@@ -11,3 +11,4 @@
 - Файлы с расшиерением .tfvars
 - Файлы crash.log, override.tf, override.tf.json,  .terraformrc, terraform.rc
 - Файлы заканчивающиеся на \_override.tf \_override.tf.json
+new line
