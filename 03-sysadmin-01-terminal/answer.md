@@ -64,13 +64,15 @@
 
 ### 12.
 
-`vagrant@vagrant:~$ mkdir /tmp/new_path_directory`
-`vagrant@vagrant:~$ mkdir /tmp/new_path_directory/bash`
-`vagrant@vagrant:~$ cp /bin/bash /tmp/new_path_directory/bash/`
+vagrant@vagrant:~$ mkdir /tmp/new_path_directory
 
-`vagrant@vagrant:~$ export PATH=/tmp/new_path_directory/bash:$PATH`
+vagrant@vagrant:~$ mkdir /tmp/new_path_directory/bash
 
-`vagrant@vagrant:~$ type -a bash`
+vagrant@vagrant:~$ cp /bin/bash /tmp/new_path_directory/bash/
+
+vagrant@vagrant:~$ export PATH=/tmp/new_path_directory/bash:$PATH
+
+vagrant@vagrant:~$ type -a bash
 
 
 
