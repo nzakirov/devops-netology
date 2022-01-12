@@ -36,6 +36,13 @@ cat < file1 > file2
 
 # 8.
 
+Получится.
+```bash
+exec 3>&1
+ls -l notexist 2>&1 >&3 3>&- | grep 'not' 3>&-
+# ...
+exec 3>&-
+```
 
 # 9.
 
@@ -53,6 +60,21 @@ sse4_1
 
 # 12.
 
+При удаленном запуске команды через SSH для удаленного сеанса не выделяется TTY.Для того чтобы ассоциировать с выполняемой командой на удаленном хосте TTY ssh  можно запустить с параметром -t:
+```bash
+vagrant@vagrant:~$ ssh localhost 'tty'
+vagrant@localhost's password: 
+not a tty
+vagrant@vagrant:~$ ssh -t localhost 'tty'
+vagrant@localhost's password: 
+/dev/pts/1
+Connection to localhost closed.
+```
 
+# 13.
 
+# 14.
+
+```tee``` - команда которая читает из stdin и пишет в stdout. ```sudo``` не распросртраняется на перенаправление вывода ```>```. 
+В случае ```echo string | sudo tee /root/new_file``` перенаправление выполняет сама команда ```tee``` и она выполняется с привлигерованными правами.
 
