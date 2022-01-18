@@ -15,7 +15,7 @@ init
 # 4.
 
 ```bash
-ls > /dev/pts/1
+ls noexist 2> /dev/pts/1
 ```
 
 # 5.
@@ -72,6 +72,8 @@ Connection to localhost closed.
 ```
 
 # 13.
+
+<img src="https://drive.google.com/uc?export=view&id=1X10VMyNnvaMEfYBBO8i82ZV_IufXRi3S" width="600px">
 
 # 14.
 
