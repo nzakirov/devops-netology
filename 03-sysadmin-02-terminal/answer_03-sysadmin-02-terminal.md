@@ -73,7 +73,7 @@ Connection to localhost closed.
 
 # 13.
 
-<img src="https://drive.google.com/uc?export=view&id=1X10VMyNnvaMEfYBBO8i82ZV_IufXRi3S" width="600px">
+<img src="https://drive.google.com/uc?export=view&id=1lH5KzqlifaFxtPzlPO9stLHAgpM9uT6l" width="600px">
 
 # 14.
 
