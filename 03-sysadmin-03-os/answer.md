@@ -64,4 +64,57 @@ openat(AT_FDCWD, "/bin/bash", O_RDONLY|O_NONBLOCK) = 3
 
 # 5. 
 
+```bash
+root@vagrant:~# opensnoop-bpfcc 
+PID    COMM               FD ERR PATH
+390    systemd-udevd      14   0 /sys/fs/cgroup/unified/system.slice/systemd-udevd.service/cgroup.procs
+390    systemd-udevd      14   0 /sys/fs/cgroup/unified/system.slice/systemd-udevd.service/cgroup.threads
+842    vminfo              5   0 /var/run/utmp
+644    dbus-daemon        -1   2 /usr/local/share/dbus-1/system-services
+644    dbus-daemon        20   0 /usr/share/dbus-1/system-services
+644    dbus-daemon        -1   2 /lib/dbus-1/system-services
+644    dbus-daemon        20   0 /var/lib/snapd/dbus-1/system-services/
+649    irqbalance          6   0 /proc/interrupts
+649    irqbalance          6   0 /proc/stat
+649    irqbalance          6   0 /proc/irq/20/smp_affinity
+649    irqbalance          6   0 /proc/irq/0/smp_affinity
+649    irqbalance          6   0 /proc/irq/1/smp_affinity
+649    irqbalance          6   0 /proc/irq/8/smp_affinity
+649    irqbalance          6   0 /proc/irq/12/smp_affinity
+649    irqbalance          6   0 /proc/irq/14/smp_affinity
+649    irqbalance          6   0 /proc/irq/15/smp_affinity
+842    vminfo              5   0 /var/run/utmp
+644    dbus-daemon        -1   2 /usr/local/share/dbus-1/system-services
+644    dbus-daemon        20   0 /usr/share/dbus-1/system-services
+644    dbus-daemon        -1   2 /lib/dbus-1/system-services
+644    dbus-daemon        20   0 /var/lib/snapd/dbus-1/system-services/
+^Croot@vagrant:~# 
+```
+
+# 6.
+
+Системный вызов ```uname``` .
+``` Part of the utsname information is also accessible via /proc/sys/kernel/{ostype, hostname, osrelease, version, domainname}.```
+
+# 7.
+
+При выполнении последовательности команд разделенных ```;``` следующая команда выполняется в любом случае вне зависисмости от того успешно или нет выполнилась предыдущая. При ```&&``` следующая команда выполняется только в том случае если предыдущая завершилась успешно.
+```set -e``` устанавливает такое поведение bash, когда в случае если команда завершилась с ненулевым статусом (т.е. с ошибкой), таким образом смысла использовать && нет.
+
+# 8. 
+
+**-e** - Выйти немедленно если команда завершилась с ненулевым кодом возврата.
+**-u** - Считать неинициализированные переменные при подстановке как ошибку.
+**-x** - Выводить на экран команды и их аргументы как они закончат выполнение.
+**-o** - Опция
+Опция **pipefail** - возвращает ненулевое значение последней невыполненной команды, нулевое значение если все команды выполнились
+
+# 9.
+
+```bash
+root@vagrant:~# ps -o 'stat' -a -x|tail -n+2|cut -c1|sort |uniq -c |sort -rn
+     65 S
+     45 I
+      1 R
+```
 
