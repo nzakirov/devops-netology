@@ -48,9 +48,26 @@ OPTIONS=''
 ```
 
 ```bash
-
-
+root@vagrant:~# systemctl enable node_exporter
+root@vagrant:~# systemctl restart node_exporter
+root@vagrant:~# journalctl -eu node_exporter
 ```
+
+```bash
+root@vagrant:~# reboot
+```
+ 
+Проверяем что сервис запускается после перезагрузки:
+
+```root@vagrant:~# systemctl status node_exporter```
+
+https://drive.google.com/file/d/12e1Tgj_0OP9d9018WLm2lyoX9VfN_CpR/view?usp=sharing
+
+<img src="https://drive.google.com/uc?export=view&id=12e1Tgj_0OP9d9018WLm2lyoX9VfN_CpR" width="600px">
+
+
+
+
 
 
 
