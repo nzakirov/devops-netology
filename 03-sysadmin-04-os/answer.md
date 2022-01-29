@@ -173,6 +173,26 @@ vagrant@vagrant:/proc/sys/fs$ ulimit -Sn
 <img src="https://drive.google.com/uc?export=view&id=1Q5-DitSSokp-lR8GqZO5tCs0anV9aS5h" width="600px">
 
 
+# 7.
+
+Данная команда запускает так называемую fork-бомбу, процесс который лавинообразно порождает процессы в системе.
+
+```bash
+:(){ :|:& };:
+\_/| |||| ||\- ... the function ':', initiating a chain-reaction: each ':' will start    two more.
+ | | |||| |\- Definition ends now, to be able to run ...
+ | | |||| \- End of function-block
+ | | |||\- disown the functions (make them a background process), so that the children    of a parent
+ | | |||   will not be killed when the parent gets auto-killed
+ | | ||\- ... another copy of the ':'-function, which has to be loaded into memory.
+ | | ||   So, ':|:' simply loads two copies of the function, whenever ':' is called
+ | | |\- ... and pipe its output to ...
+ | | \- Load a copy of the function ':' into memory ...
+ | \- Begin of function-definition
+ \- Define the function ':' without any parameters '()' as follows:
+```
+
+
 
 
 
