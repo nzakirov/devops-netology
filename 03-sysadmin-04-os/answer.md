@@ -61,13 +61,67 @@ root@vagrant:~# reboot
 
 ```root@vagrant:~# systemctl status node_exporter```
 
-https://drive.google.com/file/d/12e1Tgj_0OP9d9018WLm2lyoX9VfN_CpR/view?usp=sharing
-
 <img src="https://drive.google.com/uc?export=view&id=12e1Tgj_0OP9d9018WLm2lyoX9VfN_CpR" width="600px">
 
 
+# 2.
 
+CPU:
 
+```bash
+vagrant@vagrant:~$  curl -s localhost:9100/metrics 2>/dev/null | grep node_cpu_seconds|egrep 'idle|system|user'|grep -v ^#
+node_cpu_seconds_total{cpu="0",mode="idle"} 13152.92
+node_cpu_seconds_total{cpu="0",mode="system"} 32.45
+node_cpu_seconds_total{cpu="0",mode="user"} 21.78
+node_cpu_seconds_total{cpu="1",mode="idle"} 13152.57
+node_cpu_seconds_total{cpu="1",mode="system"} 34.47
+node_cpu_seconds_total{cpu="1",mode="user"} 17.18
+```
 
+Память:
 
+```bash
+vagrant@vagrant:~$ curl -s localhost:9100/metrics 2>/dev/null | grep node_memory|egrep 'MemAvail|MemFree'|grep -v ^#
+node_memory_MemAvailable_bytes 1.782554624e+09
+node_memory_MemFree_bytes 1.571426304e+09
+```
+
+Диск:
+
+```bash
+vagrant@vagrant:~$ curl -s localhost:9100/metrics 2>/dev/null | grep node_disk|grep 'dm-0'|egrep "io|read|write"|grep -v ^#
+node_disk_io_now{device="dm-0"} 0
+node_disk_io_time_seconds_total{device="dm-0"} 14.956
+node_disk_io_time_weighted_seconds_total{device="dm-0"} 18.464
+node_disk_read_bytes_total{device="dm-0"} 2.3986688e+08
+node_disk_read_time_seconds_total{device="dm-0"} 14.712
+node_disk_reads_completed_total{device="dm-0"} 8428
+node_disk_reads_merged_total{device="dm-0"} 0
+node_disk_write_time_seconds_total{device="dm-0"} 3.7520000000000002
+node_disk_writes_completed_total{device="dm-0"} 2917
+node_disk_writes_merged_total{device="dm-0"} 0
+```
+
+Сеть
+
+```bash
+vagrant@vagrant:~$ curl -s localhost:9100/metrics 2>/dev/null | grep node_network|grep eth0|egrep 'receive|transmit'|grep -v ^#
+node_network_receive_bytes_total{device="eth0"} 456116
+node_network_receive_compressed_total{device="eth0"} 0
+node_network_receive_drop_total{device="eth0"} 0
+node_network_receive_errs_total{device="eth0"} 0
+node_network_receive_fifo_total{device="eth0"} 0
+node_network_receive_frame_total{device="eth0"} 0
+node_network_receive_multicast_total{device="eth0"} 0
+node_network_receive_packets_total{device="eth0"} 5893
+node_network_transmit_bytes_total{device="eth0"} 423723
+node_network_transmit_carrier_total{device="eth0"} 0
+node_network_transmit_colls_total{device="eth0"} 0
+node_network_transmit_compressed_total{device="eth0"} 0
+node_network_transmit_drop_total{device="eth0"} 0
+node_network_transmit_errs_total{device="eth0"} 0
+node_network_transmit_fifo_total{device="eth0"} 0
+node_network_transmit_packets_total{device="eth0"} 3705
+node_network_transmit_queue_length{device="eth0"} 1000
+```
 
