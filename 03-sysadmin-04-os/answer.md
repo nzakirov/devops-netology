@@ -124,4 +124,9 @@ node_network_transmit_fifo_total{device="eth0"} 0
 node_network_transmit_packets_total{device="eth0"} 3705
 node_network_transmit_queue_length{device="eth0"} 1000
 ```
+ 
+
+# 3.
+
+<img src="https://drive.google.com/uc?export=view&id=18fhOzo-Brm_zN4Hx8i5qf6LVonIA6ZTX" width="600px">
 
