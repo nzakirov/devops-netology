@@ -130,3 +130,49 @@ node_network_transmit_queue_length{device="eth0"} 1000
 
 <img src="https://drive.google.com/uc?export=view&id=18fhOzo-Brm_zN4Hx8i5qf6LVonIA6ZTX" width="600px">
 
+
+# 4.
+
+Да, можно. ОС осознает что запущена в виртуальной среде.
+
+```bash
+vagrant@vagrant:~$ dmesg|egrep -i 'kvm|hypervisor|virt'
+[    0.000000] DMI: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000002] kvm-clock: cpu 0, msr 72401001, primary cpu clock
+[    0.000002] kvm-clock: using sched offset of 79049170971 cycles
+[    0.000046] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.007505] CPU MTRRs all blank - virtualized system.
+[    0.186706] Booting paravirtualized kernel on KVM
+[    0.097148] kvm-clock: cpu 1, msr 72401041, secondary cpu clock
+[    0.714424] clocksource: Switched to clocksource kvm-clock
+[    6.079169] systemd[1]: Detected virtualization oracle.
+```
+
+
+# 5.
+
+```bash
+vagrant@vagrant:~$ sysctl fs.nr_open
+fs.nr_open = 1048576
+```
+
+Переменная задает лимит по количеству открытых файловых дескрипторов для ядра.
+
+Мягкий лимит:
+
+```bash
+vagrant@vagrant:/proc/sys/fs$ ulimit -Sn
+1024
+```
+
+
+# 6.
+
+<img src="https://drive.google.com/uc?export=view&id=1Q5-DitSSokp-lR8GqZO5tCs0anV9aS5h" width="600px">
+
+
+
+
+
