@@ -107,3 +107,30 @@ root@vagrant:~# lvcreate -L 100M vg01 /dev/md1
 Результат:
 
 <img src="https://drive.google.com/uc?export=view&id=1uBad4dYJaVSNcD6vq0q-B7CLdbiSW0zI" width="600px">
+
+# 11.
+
+```bash
+root@vagrant:~# mkfs.ext4 /dev/vg01/lvol0 
+mke2fs 1.45.5 (07-Jan-2020)
+Creating filesystem with 25600 4k blocks and 25600 inodes
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (1024 blocks): done
+Writing superblocks and filesystem accounting information: done
+```
+
+# 12.
+
+```root@vagrant:~# cd /tmp```
+
+```root@vagrant:/tmp# mkdir new```
+
+```root@vagrant:/tmp# mount /dev/vg01/lvol0 /tmp/new```
+
+Результат:
+
+<img src="https://drive.google.com/uc?export=view&id=1nA2js0BRDjp24CTd_KD2IatlL-onouo9" width="600px">
+
+
