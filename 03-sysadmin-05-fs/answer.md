@@ -133,4 +133,24 @@ Writing superblocks and filesystem accounting information: done
 
 <img src="https://drive.google.com/uc?export=view&id=1nA2js0BRDjp24CTd_KD2IatlL-onouo9" width="600px">
 
+# 13.
+
+```bash
+root@vagrant:/tmp# wget https://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz
+--2022-01-31 21:26:08--  https://mirror.yandex.ru/ubuntu/ls-lR.gz
+Resolving mirror.yandex.ru (mirror.yandex.ru)... 213.180.204.183, 2a02:6b8::183
+Connecting to mirror.yandex.ru (mirror.yandex.ru)|213.180.204.183|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 22055889 (21M) [application/octet-stream]
+Saving to: ‘/tmp/new/test.gz’
+
+/tmp/new/test.gz          100%[=====================================>]  21.03M  4.73MB/s    in 5.7s    
+
+2022-01-31 21:26:13 (3.69 MB/s) - ‘/tmp/new/test.gz’ saved [22055889/22055889]
+
+```
+
+#  14.
+
+<img src="https://drive.google.com/uc?export=view&id=/17loCjO0Z9OjL2u6YOhCHgneTHh_fGvqG" width="600px">
 
