@@ -23,4 +23,28 @@ root@vagrant:~# sfdisk -d /dev/sdb | sfdisk /dev/sdc
 
 <img src="https://drive.google.com/uc?export=view&id=1U6u0JkeZ7SZkKNxYKFKzjoYw1dglMCo2" width="600px">
 
+# 6.
+
+Занулить суберблоки на диске:
+
+```bash
+root@vagrant:~# mdadm --zero-superblock --force /dev/sdb1 /dev/sdc1
+mdadm: Unrecognised md component device - /dev/sdb1
+mdadm: Unrecognised md component device - /dev/sdc1
+```
+
+Удалить старые метаданные и подпись на дисках:
+
+```bash
+root@vagrant:~# wipefs --al --force /dev/sdb1 /dev/sdc1
+```
+
+Создание рейда 1:
+
+```root@vagrant:~# mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1```
+
+Результат:
+
+<img src="https://drive.google.com/uc?export=view&id=1cEboNSdzzyLMbpDZBrtNhlIBIzPMqygY" width="600px">
+
 
