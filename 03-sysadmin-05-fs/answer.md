@@ -72,3 +72,16 @@ root@vagrant:~# wipefs --al --force /dev/sdb2 /dev/sdc2
 
 <img src="https://drive.google.com/uc?export=view&id=10kskUcg9UmfKPD5d7lEduLwHq9QKCX2k" width="600px">
 
+# 8.
+
+```bash
+root@vagrant:~# pvcreate /dev/md0 /dev/md1
+  Physical volume "/dev/md0" successfully created.
+  Physical volume "/dev/md1" successfully created.
+```
+
+Результат:
+
+<img src="https://drive.google.com/uc?export=view&id=14mhWtBIWdRjJOjy1vt-0P_pOPK0UlXmH" width="600px">
+
+
