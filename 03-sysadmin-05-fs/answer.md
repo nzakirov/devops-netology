@@ -152,5 +152,5 @@ Saving to: ‘/tmp/new/test.gz’
 
 #  14.
 
-<img src="https://drive.google.com/uc?export=view&id=/17loCjO0Z9OjL2u6YOhCHgneTHh_fGvqG" width="600px">
+<img src="https://drive.google.com/uc?export=view&id=17loCjO0Z9OjL2u6YOhCHgneTHh_fGvqG" width="600px">
 
