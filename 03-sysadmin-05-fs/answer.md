@@ -96,3 +96,14 @@ root@vagrant:~# vgcreate vg01 /dev/md0 /dev/md1
 ```root@vagrant:~# vgdisplay```
 
 <img src="https://drive.google.com/uc?export=view&id=1I6nqkG8k-gkAzOtyIuTRabe4hpP2zbJy" width="600px">
+
+# 10.
+
+```bash
+root@vagrant:~# lvcreate -L 100M vg01 /dev/md1
+  Logical volume "lvol0" created.
+```
+
+Результат:
+
+<img src="https://drive.google.com/uc?export=view&id=1uBad4dYJaVSNcD6vq0q-B7CLdbiSW0zI" width="600px">
