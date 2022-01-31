@@ -173,3 +173,69 @@ root@vagrant:/tmp/new# pvmove /dev/md1
 Результат:
 
 <img src="https://drive.google.com/uc?export=view&id=1mJe05UTHuY244hPxem_aGo8CdIgGVpSk" width="600px">
+
+# 17.
+
+```bash
+root@vagrant:/tmp/new# mdadm --fail /dev/md0 /dev/sdc1```
+mdadm: set /dev/sdc1 faulty in /dev/md0
+```
+
+```bash
+root@vagrant:/tmp/new# mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Mon Jan 31 16:51:20 2022
+        Raid Level : raid1
+        Array Size : 2094080 (2045.00 MiB 2144.34 MB)
+     Used Dev Size : 2094080 (2045.00 MiB 2144.34 MB)
+      Raid Devices : 2
+     Total Devices : 2
+       Persistence : Superblock is persistent
+
+       Update Time : Mon Jan 31 21:54:13 2022
+             State : clean, degraded 
+    Active Devices : 1
+   Working Devices : 1
+    Failed Devices : 1
+     Spare Devices : 0
+
+Consistency Policy : resync
+
+              Name : vagrant:0  (local to host vagrant)
+              UUID : bd82f4e9:df10b61c:66f130be:c4bb75e4
+            Events : 19
+
+    Number   Major   Minor   RaidDevice State
+       0       8       17        0      active sync   /dev/sdb1
+       -       0        0        1      removed
+
+       1       8       33        -      faulty   /dev/sdc1
+```
+
+# 18.
+
+```bash
+root@vagrant:/tmp/new# dmesg|grep 'md0'
+[ 4573.598695] md/raid1:md0: not clean -- starting background reconstruction
+[ 4573.598698] md/raid1:md0: active with 2 out of 2 mirrors
+[ 4573.598719] md0: detected capacity change from 0 to 2144337920
+[ 4573.603664] md: resync of RAID array md0
+[ 4584.295085] md: md0: resync done.
+[22746.276896] md/raid1:md0: Disk failure on sdc1, disabling device.
+               md/raid1:md0: Operation continuing on 1 devices.
+root@vagrant:/tmp/new# 
+```
+
+# 19.
+
+```bash
+root@vagrant:/tmp/new# gzip -t /tmp/new/test.gz
+root@vagrant:/tmp/new# echo $?
+0
+```
+
+# 20.
+
+
+
