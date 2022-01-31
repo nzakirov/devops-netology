@@ -84,4 +84,15 @@ root@vagrant:~# pvcreate /dev/md0 /dev/md1
 
 <img src="https://drive.google.com/uc?export=view&id=14mhWtBIWdRjJOjy1vt-0P_pOPK0UlXmH" width="600px">
 
+# 9. 
 
+```bash
+root@vagrant:~# vgcreate vg01 /dev/md0 /dev/md1
+  Volume group "vg01" successfully created
+```
+
+Результат:
+
+```root@vagrant:~# vgdisplay```
+
+<img src="https://drive.google.com/uc?export=view&id=1I6nqkG8k-gkAzOtyIuTRabe4hpP2zbJy" width="600px">
