@@ -154,3 +154,22 @@ Saving to: ‘/tmp/new/test.gz’
 
 <img src="https://drive.google.com/uc?export=view&id=17loCjO0Z9OjL2u6YOhCHgneTHh_fGvqG" width="600px">
 
+# 15. 
+
+```bash
+root@vagrant:/tmp/new# gzip -t /tmp/new/test.gz 
+root@vagrant:/tmp/new# echo $?
+0
+```
+
+# 16.
+
+```bash
+root@vagrant:/tmp/new# pvmove /dev/md1
+  /dev/md1: Moved: 12.00%
+  /dev/md1: Moved: 100.00%
+```
+
+Результат:
+
+<img src="https://drive.google.com/uc?export=view&id=1mJe05UTHuY244hPxem_aGo8CdIgGVpSk" width="600px">
