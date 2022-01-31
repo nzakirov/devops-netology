@@ -16,7 +16,11 @@
 
 # 5.
 
-```sfdisk -d /dev/sdb | sfdisk /dev/sdc```
+```bash
+vagrant@vagrant:~$ sudo -i
+root@vagrant:~# sfdisk -d /dev/sdb | sfdisk /dev/sdc
+```
 
+<img src="https://drive.google.com/uc?export=view&id=1U6u0JkeZ7SZkKNxYKFKzjoYw1dglMCo2" width="600px">
 
 
