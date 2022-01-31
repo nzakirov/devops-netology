@@ -14,5 +14,9 @@
 
 <img src="https://drive.google.com/uc?export=view&id=1DSkqK2bqDUUonmz9zAMVqaB0bjBUaX5p" width="600px">
 
+# 5.
+
+```sfdisk -d /dev/sdb | sfdisk /dev/sdc```
+
 
 
