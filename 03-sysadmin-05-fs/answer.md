@@ -48,3 +48,27 @@ root@vagrant:~# wipefs --al --force /dev/sdb1 /dev/sdc1
 <img src="https://drive.google.com/uc?export=view&id=1cEboNSdzzyLMbpDZBrtNhlIBIzPMqygY" width="600px">
 
 
+# 7.
+
+Занулить суберблоки на диске:
+
+```bash
+root@vagrant:~# mdadm --zero-superblock --force /dev/sdb2 /dev/sdc2
+mdadm: Unrecognised md component device - /dev/sdb2
+mdadm: Unrecognised md component device - /dev/sdc2
+```
+
+Удалить старые метаданные и подпись на дисках:
+
+```bash
+root@vagrant:~# wipefs --al --force /dev/sdb2 /dev/sdc2
+```
+
+Создание рейда 0: 
+
+```root@vagrant:~# mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2```
+
+Результат:
+
+<img src="https://drive.google.com/uc?export=view&id=10kskUcg9UmfKPD5d7lEduLwHq9QKCX2k" width="600px">
+
