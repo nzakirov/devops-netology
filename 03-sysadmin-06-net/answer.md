@@ -17,6 +17,7 @@ Status Code: 307 Internal Redirect
 Второй запрос обрабатывался дольше всего: 393мс
 
 
-<img src="https://drive.google.com/uc?export=view&id=1kajjtsXkkhXYPuvKzX6j_1JR-KkllM3j" sharing width="600px">
+<img src="https://drive.google.com/uc?export=view&id=1kajjtsXkkhXYPuvKzX6j_1JR-KkllM3j" width="600px">
 
+<img src="https://drive.google.com/uc?export=view&id=1mJe05UTHuY244hPxem_aGo8CdIgGVpSk" width="600px">
 
