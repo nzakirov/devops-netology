@@ -136,4 +136,42 @@ dns.google.		841	IN	A	8.8.4.4
 
 # 8.
 
+```❯ dig -x 216.239.32.114```
 
+```bash
+;; QUESTION SECTION:
+;114.32.239.216.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+114.32.239.216.in-addr.arpa. 86264 IN	PTR	ns1.zdns.google.
+```
+
+```❯ dig -x 216.239.34.114```
+
+```bash
+;; QUESTION SECTION:
+;114.34.239.216.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+114.34.239.216.in-addr.arpa. 86400 IN	PTR	ns2.zdns.google.
+```
+
+```❯ dig -x 216.239.36.114```
+
+```bash
+;; QUESTION SECTION:
+;114.36.239.216.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+114.36.239.216.in-addr.arpa. 86400 IN	PTR	ns3.zdns.google.
+```
+
+```❯ dig -x 216.239.38.114```
+
+```bash
+;; QUESTION SECTION:
+;114.38.239.216.in-addr.arpa.	IN	PTR
+
+;; ANSWER SECTION:
+114.38.239.216.in-addr.arpa. 86400 IN	PTR	ns4.zdns.google.
+```
