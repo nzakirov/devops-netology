@@ -109,6 +109,31 @@ Pattern Range: 0(0x00)-255(0xff), <0 random.
 
 # 7.
 
+```❯ dig dns.google```
 
+DNS сервера:
+
+```bash
+;; AUTHORITY SECTION:
+dns.google.		651	IN	NS	ns2.zdns.google.
+dns.google.		651	IN	NS	ns3.zdns.google.
+dns.google.		651	IN	NS	ns4.zdns.google.
+dns.google.		651	IN	NS	ns1.zdns.google.
+
+;; ADDITIONAL SECTION:
+ns1.zdns.google.	313279	IN	A	216.239.32.114
+ns2.zdns.google.	313279	IN	A	216.239.34.114
+ns3.zdns.google.	313279	IN	A	216.239.36.114
+ns4.zdns.google.	313279	IN	A	216.239.38.114
+```
+
+A записи:
+
+```bash
+dns.google.		841	IN	A	8.8.8.8
+dns.google.		841	IN	A	8.8.4.4
+```
+
+# 8.
 
 
