@@ -194,7 +194,24 @@ Hosts/Net: 62
 
 # 7.
 
+```bash
+vagrant@vagrant:~$ arp -a
+? (10.0.2.3) at 52:54:00:12:35:03 [ether] on eth0
+_gateway (10.0.2.2) at 52:54:00:12:35:02 [ether] on eth0
+router.lan (192.168.1.1) at 74:4d:28:01:bd:10 [ether] on eth1
+```
 
+В windows аналогично.
+
+Очистить ARP кэш полностью:
+
+```vagrant@vagrant:~$ sudo ip -s -s neigh flush all```
+
+Удалить только один ip:
+
+```vagrant@vagrant:~$ sudo arp -d 10.0.2.3```
+
+ 
 
 
 
