@@ -178,3 +178,20 @@ route-views>
 
 <img src="https://drive.google.com/uc?export=view&id=1lL18vPK3oDAle0acu-db0dfWCJvn7wLt" width="600px">
 
+Для сохранения настроек после перезагрузки:
+
+```root@vagrant:~# echo "dummy" >> /etc/modules```
+
+```root@vagrant:~# echo "options dummy numdummies=2" > /etc/modprobe.d/dummy.conf```
+
+```root@vagrant:~# vim /etc/network/interfaces```
+
+```bash
+auto dummy0
+iface dummy0 inet static
+    address 10.4.4.4/32
+    pre-up ip link add dummy0 type dummy
+    post-down ip link del dummy0
+```
+
+
