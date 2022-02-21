@@ -241,7 +241,7 @@ default via 192.168.1.1 dev eth1 proto dhcp src 192.168.1.25 metric 100
 
 Открытые TCP порты:
 
-```root@vagrant:~# ss  -ntlp
+```root@vagrant:~# ss  -ntlp```
 
 ```bash
 State                Recv-Q               Send-Q                             Local Address:Port                                Peer Address:Port               Process                                                  
