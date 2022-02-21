@@ -239,5 +239,18 @@ default via 192.168.1.1 dev eth1 proto dhcp src 192.168.1.25 metric 100
 
 # 3.
 
+Открытые TCP порты:
+
+```root@vagrant:~# ss  -ntlp
+
+```bash
+State                Recv-Q               Send-Q                             Local Address:Port                                Peer Address:Port               Process                                                  
+LISTEN               0                    4096                                   127.0.0.1:8125                                     0.0.0.0:*                   users:(("netdata",pid=630,fd=26))                       
+LISTEN               0                    4096                                     0.0.0.0:19999                                    0.0.0.0:*                   users:(("netdata",pid=630,fd=4))                        
+LISTEN               0                    4096                               127.0.0.53%lo:53                                       0.0.0.0:*                   users:(("systemd-resolve",pid=608,fd=13))               
+LISTEN               0                    128                                      0.0.0.0:22                                       0.0.0.0:*                   users:(("sshd",pid=671,fd=3))                           
+LISTEN               0                    4096                                           *:9100                                           *:*                   users:(("node_exporter",pid=634,fd=3))                  
+LISTEN               0                    128                                         [::]:22                                          [::]:*                   users:(("sshd",pid=671,fd=4))            
+```
 
 
