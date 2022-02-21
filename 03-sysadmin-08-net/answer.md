@@ -180,18 +180,61 @@ route-views>
 
 Для сохранения настроек после перезагрузки:
 
-```root@vagrant:~# echo "dummy" >> /etc/modules```
+``root@vagrant:~# echo "dummy" >> /etc/modules```
 
 ```root@vagrant:~# echo "options dummy numdummies=2" > /etc/modprobe.d/dummy.conf```
 
-```root@vagrant:~# vim /etc/network/interfaces```
+```root@vagrant:/etc/netplan# vim 60-dummy.yaml```
 
 ```bash
-auto dummy0
-iface dummy0 inet static
-    address 10.4.4.4/32
-    pre-up ip link add dummy0 type dummy
-    post-down ip link del dummy0
+network:
+  version: 2
+  renderer: networkd
+  bridges:
+    dummy0:
+      dhcp4: no
+      dhcp6: no
+      accept-ra: no
+      interfaces: [ ]
+      addresses:
+        - 10.4.4.4/32
 ```
+
+Добавить статические  маршруты:
+
+```root@vagrant:/etc/netplan# ip route add 10.2.1.0/27 via 192.168.1.1```
+
+```root@vagrant:/etc/netplan# ip route add 10.3.2.0/27 via 192.168.1.1```
+
+
+```root@vagrant:~# vim /etc/netplan/50-vagrant.yaml```
+
+```bash
+---
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth1:
+      dhcp4: true
+      routes:
+      - to: 10.2.1.0/27
+        via: 192.168.1.1
+```
+
+```root@vagrant:~# ip route```
+
+```bash
+default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100 
+default via 192.168.1.1 dev eth1 proto dhcp src 192.168.1.25 metric 100 
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 
+10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 
+10.2.1.0/27 via 192.168.1.1 dev eth1 proto static onlink 
+192.168.1.0/24 dev eth1 proto kernel scope link src 192.168.1.25 
+192.168.1.1 dev eth1 proto dhcp scope link src 192.168.1.25 metric 100 
+```
+
+# 3.
+
 
 
