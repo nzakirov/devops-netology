@@ -253,4 +253,33 @@ LISTEN               0                    4096                                  
 LISTEN               0                    128                                         [::]:22                                          [::]:*                   users:(("sshd",pid=671,fd=4))            
 ```
 
+Приложения:
+
+sshd: 22 порт
+
+netdata: 19999 порт
+
+node_exporter: 9100 порт
+
+
+# 4.
+
+```root@vagrant:~# ss  -nulp```
+
+```bash
+State                Recv-Q               Send-Q                                 Local Address:Port                             Peer Address:Port              Process                                                  
+UNCONN               0                    0                                          127.0.0.1:8125                                  0.0.0.0:*                  users:(("netdata",pid=630,fd=25))                       
+UNCONN               0                    0                                      127.0.0.53%lo:53                                    0.0.0.0:*                  users:(("systemd-resolve",pid=608,fd=12))               
+UNCONN               0                    0                                  192.168.1.25%eth1:68                                    0.0.0.0:*                  users:(("systemd-network",pid=1876,fd=21))              
+UNCONN               0                    0                                     10.0.2.15%eth0:68                                    0.0.0.0:*                  users:(("systemd-network",pid=1876,fd=23)) 
+```
+
+systemd-resolve: 53 порт
+
+systemd-network: 68 порт
+
+
+# 5.
+
+
 
