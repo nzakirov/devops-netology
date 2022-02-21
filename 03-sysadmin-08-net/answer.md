@@ -220,6 +220,8 @@ network:
       routes:
       - to: 10.2.1.0/27
         via: 192.168.1.1
+      - to: 10.3.2.0/27
+        via: 192.168.1.1
 ```
 
 ```root@vagrant:~# ip route```
@@ -230,6 +232,7 @@ default via 192.168.1.1 dev eth1 proto dhcp src 192.168.1.25 metric 100
 10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 
 10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100 
 10.2.1.0/27 via 192.168.1.1 dev eth1 proto static onlink 
+10.3.2.0/27 via 192.168.1.1 dev eth1 proto static onlink 
 192.168.1.0/24 dev eth1 proto kernel scope link src 192.168.1.25 
 192.168.1.1 dev eth1 proto dhcp scope link src 192.168.1.25 metric 100 
 ```
