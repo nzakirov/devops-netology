@@ -281,5 +281,4 @@ systemd-network: 68 порт
 
 # 5.
 
-
-
+<img src="https://drive.google.com/uc?export=view&id=17COdHn8AOFb54pS_CrGnZ-aAQcDRk8C1" width="600px">
