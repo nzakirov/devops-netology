@@ -20,3 +20,7 @@
 # 5.
 
 <img src="https://drive.google.com/uc?export=view&id=188WWhN9j4UC-2Nw3G0UxNV7WXu7XT9qS" width="600px">
+
+# 6.
+
+<img src="https://drive.google.com/uc?export=view&id=1Bhy7k-_sBe9kRfwTIMYidLNbznBU75AM" width="600px">
