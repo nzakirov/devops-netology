@@ -6,3 +6,7 @@
 # 2.
 
 <img src="https://drive.google.com/uc?export=view&id=1DMyo0de6EEjOWwAjWWwmmMD7sPwdbrYJ" width="600px">
+
+# 3.
+
+<img src="https://drive.google.com/uc?export=view&id=1pifdaKQArUMvmbbG9cdO-iUSwzD-ym3e" width="600px">
