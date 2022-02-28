@@ -27,6 +27,6 @@
 
 # 7.
 
-<img src="https://drive.google.com/uc?export=view&id=1Bhy7k-_sBe9kRfwTIMYidLNbznBU75AM" width="600px">
+<img src="https://drive.google.com/uc?export=view&id=1WMwq-Xj8iTsWmqbjCJF8PA8E3sgFkV2S" width="600px">
 
 <img src="https://drive.google.com/uc?export=view&id=1LmQjNpk8Kih5CETvfOtbV9eEiqi-dXnS" width="600px">
