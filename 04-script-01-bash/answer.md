@@ -93,9 +93,16 @@ done
 
 # 5.
 
-111
-222
-333
-444
+```bash
+#!/bin/sh
+
+message_file=$1
+
+if [ -z "`head -1 $message_file | grep "\[[0-9]\{2,\}-.*]" | grep '^.\{,30\}$'`" ]
+then
+    echo "[POLICY] Your message is not formatted correctly"
+    exit 1
+fi
+```
 
 
