@@ -21,3 +21,32 @@ do
     fi
 done
 ```
+
+# 3.
+
+```bash
+#!/bin/bash
+
+ip_arr=(
+    192.168.0.1
+    173.194.222.113
+    87.250.250.242
+)
+
+port=80
+count=5
+
+for ip in ${ip_arr[@]}
+do
+    for (( i = 0; i < $count; i++))
+    do
+        nc -zw1 $ip $port
+        if (($? == 0))
+        then
+            echo "`date '+%Y-%m-%d %T'` ${ip}:${port}    UP" >> log
+        else
+            echo "`date '+%Y-%m-%d %T'` ${ip}:${port}    DOWN" >> log
+        fi
+    done
+done
+```
