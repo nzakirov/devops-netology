@@ -50,3 +50,48 @@ do
     done
 done
 ```
+
+# 4.
+
+```bash
+#!/bin/bash
+
+ip_arr=(
+    195.248.71.50
+    195.248.71.137
+    195.248.71.141
+    195.248.71.129
+)
+
+port=80
+count=5
+is_down=0
+
+while (($is_down == 0))
+do
+    for ip in ${ip_arr[@]}
+    do
+        if (($is_down == 1))
+        then
+            break
+        fi
+        echo $ip
+        for (( i = 0; i < $count; i++))
+        do
+            nc -zw1 $ip $port
+            is_down=$?
+            if (($is_down == 0))
+            then
+                echo "`date '+%Y-%m-%d %T'` ${ip}:${port}    UP" >> log
+            else
+                echo "`date '+%Y-%m-%d %T'` ${ip}:${port}    DOWN" >> error
+                break
+            fi
+        done
+    done
+done
+```
+
+# 5.
+
+
