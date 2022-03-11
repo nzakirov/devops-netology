@@ -22,5 +22,18 @@ is_change = False
 for result in result_os.split('\n'):
     if result.find('изменено') != -1:
         prepare_result = result.replace('\tизменено:      ', '')
-        print(os.getcwd() + '/' + prepare_result)
+        print(path + '/' + prepare_result)
 ```
+
+### Вывод скрипта при запуске при тестировании:
+```
+❯ ./script-02-py-2.py
+~/courses/netology/devops/homeworks/devops-netology/04-script-02-py/answer.md
+~/courses/netology/devops/homeworks/devops-netology/04-script-02-py/test1
+~/courses/netology/devops/homeworks/devops-netology/04-script-02-py/test2
+```
+
+
+# 3.
+
+
