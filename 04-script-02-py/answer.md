@@ -36,4 +36,23 @@ for result in result_os.split('\n'):
 
 # 3.
 
+```python
+#!/usr/bin/env python3
+
+import os
+import sys
+
+path = sys.argv[1]
+bash_command = [f'cd {path}', "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('изменено') != -1:
+        prepare_result = result.replace('\tизменено:      ', '')
+        print(path + '/' + prepare_result)
+
+```
+
+
+# 4.
+
 
