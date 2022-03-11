@@ -52,6 +52,12 @@ for result in result_os.split('\n'):
 
 ```
 
+### Вывод скрипта при запуске при тестировании:
+```
+❯ ./script-02-py-3.py ~/courses/netology/devops/homeworks/devops-netology
+/home/znail/courses/netology/devops/homeworks/devops-netology/04-script-02-py/test1
+/home/znail/courses/netology/devops/homeworks/devops-netology/04-script-02-py/test2
+```
 
 # 4.
 
