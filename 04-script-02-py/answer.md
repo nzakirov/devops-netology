@@ -10,4 +10,17 @@
 
 # 2.
 
+```python
+#!/usr/bin/env python3
 
+import os
+
+path = '~/courses/netology/devops/homeworks/devops-netology'
+bash_command = [f'cd {path}', "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+is_change = False
+for result in result_os.split('\n'):
+    if result.find('изменено') != -1:
+        prepare_result = result.replace('\tизменено:      ', '')
+        print(os.getcwd() + '/' + prepare_result)
+```
