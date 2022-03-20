@@ -11,8 +11,9 @@ parse error: Unfinished string at EOF at line 13, column 0
 parse error: Invalid numeric literal at line 10, column 0
 ❯ vim test.json
 ❯ cat test.json|jq
+```
 
-```bash
+```json
  { 
     "info" : "Sample JSON output from our service\t",
         "elements" :[
