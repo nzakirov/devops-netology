@@ -12,7 +12,7 @@ parse error: Invalid numeric literal at line 10, column 0
 ❯ vim test.json
 ❯ cat test.json|jq
 
-```
+```bash
  { 
     "info" : "Sample JSON output from our service\t",
         "elements" :[
