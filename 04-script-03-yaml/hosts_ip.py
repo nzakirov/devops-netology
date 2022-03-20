@@ -42,3 +42,4 @@ for item in prev_hosts:
 with open("hosts_list.json", "w") as hosts_file:
     json.dump(curr_hosts, hosts_file)
 
+# a
