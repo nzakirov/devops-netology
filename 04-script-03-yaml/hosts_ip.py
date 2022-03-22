@@ -3,29 +3,31 @@
 import socket
 import os
 import json
+import yaml
+import argparse
 
 prev_hosts = []
 curr_hosts = []
 
-# Чтение из файла в словарь результатов последней проверки. Ключ - URL, значение IP
-#file_hosts = open('hosts_list', 'r', encoding='utf-8')
-#for line in file_hosts:
-#    inputStr  = list(line.split(' '))
-#    url = inputStr[0]
-#    ip = inputStr[1].replace('\n', '')
-#    
-#    if url not in prev_hosts.keys():
-#        prev_hosts[url] = ip 
-#file_hosts.close()
-#
-with open("hosts_list.json", "r") as hosts_file:
-    prev_hosts = json.load(hosts_file)
+parser = argparse.ArgumentParser(description='A tutorial of hosts_ip!')
+parser.add_argument("--ftype",
+                    choices=["json", "yaml"],
+                    default="json", type=str, help="File type")
+args = parser.parse_args()
+ft = args.ftype
+hosts_file = "hosts_list"
+if ft == "json":
+    with open(f"{hosts_file}.json", "r") as fhosts:
+        prev_hosts = json.load(fhosts)
+else:
+    with open(f"{hosts_file}.yaml", "r") as fhosts:
+        prev_hosts = yaml.safe_load(fhosts)
 
 # Сохранение в файл результатов предыдущей проверки
-os.system('cp hosts_list.json hosts_list.json.`date +%Y%m%d%H%M%S`')
+os.system(f"cp {hosts_file}.json {hosts_file}.json.`date +%Y%m%d%H%M%S`")
+os.system(f"cp {hosts_file}.yaml {hosts_file}.yaml.`date +%Y%m%d%H%M%S`")
 
 # Проверка текущего значения IP и соответствия последней проверке
-#file_hosts = open('hosts_list', 'w', encoding='utf-8')
 for item in prev_hosts:
     curr_dict = {}
     for host in item:
@@ -36,10 +38,10 @@ for item in prev_hosts:
             print(f'{host} - {curr_ip}')
         else:
             print(f'[ERROR] {host} IP mismatch: {item[host]} {curr_ip}')
-    #    file_hosts.write(host + ' ' + curr_ip + '\n')
-    #file_hosts.close()
 
-with open("hosts_list.json", "w") as hosts_file:
-    json.dump(curr_hosts, hosts_file)
+with open(f"{hosts_file}.json", "w") as fhosts:
+    json.dump(curr_hosts, fhosts)
 
-# a
+with open(f"{hosts_file}.yaml", "w") as fhosts:
+    yaml.dump(curr_hosts, fhosts)
+
