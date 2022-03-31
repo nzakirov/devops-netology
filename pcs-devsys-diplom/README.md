@@ -80,6 +80,7 @@ root@vagrant:/# apt-add-repository "deb [arch=amd64] https://apt.releases.hashic
 root@vagrant:/# apt update && apt install vault
 ```
 
+```
 root@vagrant:~# vault --version
 Vault v1.10.0 (7738ec5d0d6f5bf94a809ee0f6ff0142cfa525a6)
 root@vagrant:~# whereis vault
