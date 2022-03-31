@@ -69,7 +69,6 @@ Anywhere                   ALLOW IN    127.0.0.1
 127.0.0.1                  ALLOW IN    Anywhere                  
 22/tcp (v6)                ALLOW IN    Anywhere (v6)             
 443 (v6)                   ALLOW IN    Anywhere (v6)             
-
 ```
 
 
@@ -79,6 +78,12 @@ Anywhere                   ALLOW IN    127.0.0.1
 root@vagrant:/# curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 root@vagrant:/# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 root@vagrant:/# apt update && apt install vault
+```
+
+root@vagrant:~# vault --version
+Vault v1.10.0 (7738ec5d0d6f5bf94a809ee0f6ff0142cfa525a6)
+root@vagrant:~# whereis vault
+vault: /usr/bin/vault /etc/vault.d
 ```
 
 <img src="https://drive.google.com/uc?export=view&id=1zQ9B5AM5Pk5YRn49CDtDC3-8skknOkM" width="600px">
