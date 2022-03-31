@@ -124,4 +124,47 @@ Success! Tuned the secrets engine at: pki/
 
 ```root@vagrant:~# vault write -field=certificate pki/root/generate/internal common_name="zakirov.su" ttl=87600h > CA_cert.crt```
 
+```
+root@vagrant:~# vault write pki/config/urls issuing_certificates="$VAULT_ADDR/v1/pki/ca" crl_distribution_points="$VAULT_ADDR/v1/pki/crl"
+Success! Data written to: pki/config/urls
+```
+
+```
+root@vagrant:~# vault secrets enable -path=pki_int pki
+Success! Enabled the pki secrets engine at: pki_int/
+```
+
+```
+root@vagrant:~# vault secrets tune -max-lease-ttl=43800h pki_int
+Success! Tuned the secrets engine at: pki_int/
+```
+
+```
+root@vagrant:~# vault write -format=json pki_int/intermediate/generate/internal common_name="zakirov.su Intermediate Authority" | jq -r '.data.csr' > pki_intermediate.csr
+```
+
+```
+root@vagrant:~# vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr format=pem_bundle ttl="43800h" | jq -r '.data.certificate' > intermediate.cert.pem
+```
+
+```
+root@vagrant:~# vault write  pki_int/intermediate/set-signed certificate=@intermediate.cert.pem
+Success! Data written to: pki_int/intermediate/set-signed
+```
+
+```
+root@vagrant:~# vault write pki_int/roles/zakirov-dot-su allowed_domains="zakirov.su" allow_subdomains=true max_ttl="720h"
+Success! Data written to: pki_int/roles/zakirov-dot-su
+```
+
+```
+root@vagrant:~# vault write -format=json pki_int/issue/zakirov-dot-su common_name="test1.zakirov.su" alt_names="test1.zakirov.su" ttl="720h" > test1.zakirov.su.crt
+```
+
+```
+root@vagrant:~# cat test1.zakirov.su.crt | jq -r .data.certificate > test1.zakirov.su.crt.pem
+root@vagrant:~# cat test1.zakirov.su.crt | jq -r .data.issuing_ca >> test1.zakirov.su.crt.pem
+root@vagrant:~# cat test1.zakirov.su.crt | jq -r .data.private_key > test1.zakirov.su.crt.key
+```
+
 
