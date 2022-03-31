@@ -1,3 +1,5 @@
+# 2.
+
 ## Установка, настройка ufw
 
 ```root@vagrant:/# apt install -y ufw```
@@ -71,6 +73,7 @@ Anywhere                   ALLOW IN    127.0.0.1
 443 (v6)                   ALLOW IN    Anywhere (v6)             
 ```
 
+# 3.
 
 ## Установка vaut
 
@@ -80,11 +83,45 @@ root@vagrant:/# apt-add-repository "deb [arch=amd64] https://apt.releases.hashic
 root@vagrant:/# apt update && apt install vault
 ```
 
+<img src="https://drive.google.com/uc?export=view&id=1zQ9B5AM5Pk5YRn49CDtDC3-8skknOkMb" width="600px">
+
+
+# 4.
+
+```root@vagrant:/etc/vault.d# vault server -dev -dev-root-token-id root```
+
 ```
-root@vagrant:~# vault --version
-Vault v1.10.0 (7738ec5d0d6f5bf94a809ee0f6ff0142cfa525a6)
-root@vagrant:~# whereis vault
-vault: /usr/bin/vault /etc/vault.d
+==> Vault server configuration:
+
+             Api Address: http://127.0.0.1:8200
+                     Cgo: disabled
+         Cluster Address: https://127.0.0.1:8201
+              Go Version: go1.17.7
+              Listener 1: tcp (addr: "127.0.0.1:8200", cluster address: "127.0.0.1:8201", max_request_duration: "1m30s", max_request_size: "33554432", tls: "disabled")
+               Log Level: info
+                   Mlock: supported: true, enabled: false
+           Recovery Mode: false
+                 Storage: inmem
+                 Version: Vault v1.10.0
+             Version Sha: 7738ec5d0d6f5bf94a809ee0f6ff0142cfa525a6
+
+==> Vault server started! Log data will stream in below:
 ```
 
-<img src="https://drive.google.com/uc?export=view&id=1zQ9B5AM5Pk5YRn49CDtDC3-8skknOkMb" width="600px">
+```root@vagrant:~# export VAULT_ADDR=http://127.0.0.1:8200```
+
+```root@vagrant:~# export VAULT_TOKEN=root```
+
+```
+root@vagrant:~# vault secrets enable pki
+Success! Enabled the pki secrets engine at: pki/
+```
+
+```
+root@vagrant:~# vault secrets tune -max-lease-ttl=87600h pki
+Success! Tuned the secrets engine at: pki/
+```
+
+```root@vagrant:~# vault write -field=certificate pki/root/generate/internal common_name="zakirov.su" ttl=87600h > CA_cert.crt```
+
+
