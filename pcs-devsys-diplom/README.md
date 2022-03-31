@@ -81,3 +81,5 @@ root@vagrant:/# apt-add-repository "deb [arch=amd64] https://apt.releases.hashic
 root@vagrant:/# apt update && apt install vault
 ```
 
+<img src="https://drive.google.com/uc?export=view&id=1zQ9B5AM5Pk5YRn49CDtDC3-8skknOkM" width="600px">
+
