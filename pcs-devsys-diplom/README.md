@@ -87,5 +87,4 @@ root@vagrant:~# whereis vault
 vault: /usr/bin/vault /etc/vault.d
 ```
 
-<img src="https://drive.google.com/uc?export=view&id=1zQ9B5AM5Pk5YRn49CDtDC3-8skknOkM" width="600px">
-
+<img src="https://drive.google.com/uc?export=view&id=1zQ9B5AM5Pk5YRn49CDtDC3-8skknOkMb" width="600px">
