@@ -73,7 +73,11 @@ Anywhere                   ALLOW IN    127.0.0.1
 ```
 
 
+## Установка vaut
 
-
-
+```
+root@vagrant:/# curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+root@vagrant:/# apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+root@vagrant:/# apt update && apt install vault
+```
 
