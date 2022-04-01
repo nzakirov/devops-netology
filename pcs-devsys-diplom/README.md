@@ -202,3 +202,6 @@ done.
 Добавляем корневой сертификат в браузер:
 
 <img src="https://drive.google.com/uc?export=view&id=1XcjJmvX1S7g_x5k2mdVv-MltsuxUG35F" width="600px">
+
+<img src="https://drive.google.com/uc?export=view&id=1UsY-9e1uaMf0-qmoY7FxPrEUKO3IannA" width="600px">
+
