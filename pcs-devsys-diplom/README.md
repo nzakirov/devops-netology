@@ -243,5 +243,45 @@ done.
 </html>
 ```
 
+```vagrant@vagrant:~$ vim /etc/nginx/sites-available/test1.zakirov.su```
+
+```
+server {
+        listen 80;
+        listen [::]:80;
+	server_name test1.zakirov.su;
+	return 301 https://$host$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	ssl_certificate /etc/nginx/certificate/test1.zakirov.su.crt.pem;
+	ssl_certificate_key /etc/nginx/certificate/test1.zakirov.su.crt.key;
+        root /var/www/test1.zakirov.su/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name test1.zakirov.su;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+```
+
+```vagrant@vagrant:~$ sudo ln -s /etc/nginx/sites-available/test1.zakirov.su /etc/nginx/sites-enabled/```
+
+```vagrant@vagrant:~$ sudo nginx -t```
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+```vagrant@vagrant:~$ sudo systemctl restart nginx```
+
+<img src="https://drive.google.com/uc?export=view&id=1UKtczCfpGMs-Vqpbkew5NIOQ777MJ-KE" width="600px">
+
+
 
 
