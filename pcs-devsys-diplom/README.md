@@ -208,3 +208,12 @@ done.
 <img src="https://drive.google.com/uc?export=view&id=10_DbM1IuLUYuBRWhSCqqqnOio1kMQyU4" width="600px">
 
 
+# 6.
+
+Установка nginx:
+
+```root@vagrant:~# apt update && apt upgrade```
+
+```root@vagrant:~# apt install nginx```
+
+<img src="https://drive.google.com/uc?export=view&id=1YMafGkoCLUTna_pDjL2jiXyphVidaHNe" width="600px">
