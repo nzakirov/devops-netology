@@ -167,4 +167,37 @@ root@vagrant:~# cat test1.zakirov.su.crt | jq -r .data.issuing_ca >> test1.zakir
 root@vagrant:~# cat test1.zakirov.su.crt | jq -r .data.private_key > test1.zakirov.su.crt.key
 ```
 
+# 5.
+
+Копируем корневой сертификат с виртуальной на хостовую машину:
+
+```root@vagrant:~#  scp -P 2200 CA_cert.crt znail@10.0.2.2:/home/znail/CA_cert.crt```
+
+На хостовой машине:
+
+```❯ sudo cp CA_cert.crt /usr/local/share/ca-certificates/```
+
+```❯ sudo update-ca-certificates```
+
+```
+Updating certificates in /etc/ssl/certs...
+1 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+
+Adding debian:CA_cert.pem
+done.
+Updating Mono key store
+Linux Cert Store Sync - version 4.6.2.0
+Synchronize local certs with certs from local Linux trust store.
+Copyright 2002, 2003 Motus Technologies. Copyright 2004-2008 Novell. BSD licensed.
+
+I already trust 128, your new list has 129
+Certificate added: CN=zakirov.su
+1 new root certificates were added to your trust store.
+Import process completed.
+Done
+done.
+```
+
+
 
