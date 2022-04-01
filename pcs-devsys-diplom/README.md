@@ -217,3 +217,31 @@ done.
 ```root@vagrant:~# apt install nginx```
 
 <img src="https://drive.google.com/uc?export=view&id=1YMafGkoCLUTna_pDjL2jiXyphVidaHNe" width="600px">
+
+# 7.
+
+Настройка сайта https:
+
+```vagrant@vagrant:~$ sudo mkdir -p /var/www/test1.zakirov.su/html```
+
+```vagrant@vagrant:~$ sudo chown -R $USER:$USER /var/www/test1.zakirov.su/html```
+
+```vagrant@vagrant:~$ sudo chmod -R 755 /var/www/test1.zakirov.su```
+
+```vagrant@vagrant:~$ vim /var/www/test1.zakirov.su/html/index.html```
+
+```vagrant@vagrant:~$ cat /var/www/test1.zakirov.su/html/index.html```
+
+```html
+<html>
+    <head>
+        <title>Welcome to test1.zakirov.su!</title>
+    </head>
+    <body>
+        <h1>Success!  The test1.zakirov.su server block is working!</h1>
+    </body>
+</html>
+```
+
+
+
