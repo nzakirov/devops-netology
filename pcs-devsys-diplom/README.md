@@ -199,5 +199,7 @@ Done
 done.
 ```
 
+Добавляем корневой сертификат в браузер:
 
+<img src="https://drive.google.com/uc?export=view&id=1XcjJmvX1S7g_x5k2mdVv-MltsuxUG35" width="600px">
 
