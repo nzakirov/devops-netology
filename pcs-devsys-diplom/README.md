@@ -312,6 +312,8 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 # 9.
 
+Пишем скрипт для выпуска сертификата. Для универсальности в качестве параметров передается доменное имя и срок действия сертификата:
+
 ```bash
 #!/bin/bash
 
@@ -337,6 +339,9 @@ systemctl reload nginx
 rm $crt_file
 ```
 
+Результат работы скрипта - обновленный сертификат для нашего сайта (время жизни для теста 2 мин.):
+
+<img src="https://drive.google.com/uc?export=view&id=1qpDtqbzEb_Hfc8RHQtzbLonJOD8u7RW_" width="600px">
 
 
 
