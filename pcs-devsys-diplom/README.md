@@ -355,3 +355,7 @@ rm $crt_file
 Проверяем результат работы на сайте:
 
 <img src="https://drive.google.com/uc?export=view&id=1_8hfqA2Fu4uLMFZk04Puhj4tK7zxG9FC" width="600px">
+
+После очередного запуска скрипта через cron:
+
+<img src="https://drive.google.com/uc?export=view&id=1_8hfqA2Fu4uLMFZk04Puhj4tK7zxG9FC" width="600px">
