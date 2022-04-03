@@ -344,4 +344,14 @@ rm $crt_file
 <img src="https://drive.google.com/uc?export=view&id=1qpDtqbzEb_Hfc8RHQtzbLonJOD8u7RW_" width="600px">
 
 
+# 10.
 
+Помещаем скрипт в crontab для пользователя root (для теста время жизни сертификата 2 мин. запуск каждые 5 мин.):
+
+```root@vagrant:~# crontab -e```
+
+```*/5 * * * * /root/renewcert.sh test1.zakirov.su 2m``` 
+
+Проверяем результат работы на сайте:
+
+<img src="https://drive.google.com/uc?export=view&id=1_8hfqA2Fu4uLMFZk04Puhj4tK7zxG9FC" width="600px">
