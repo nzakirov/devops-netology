@@ -363,3 +363,10 @@ rm $crt_file
 Лог работы cron:
 
 <img src="https://drive.google.com/uc?export=view&id=19GEaqOKouRc_Zkku3fLxsaT9Crr7adT4" width="600px">
+
+Для выставления периодичности выпуска сертификата через каждые 30 дней, согласно задания, необходимо изменить crontab:
+
+```root@vagrant:~# crontab -e```
+
+```* * */30 * * /root/renewcert.sh test1.zakirov.su 720h``` 
+
