@@ -308,6 +308,8 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 <img src="https://drive.google.com/uc?export=view&id=1UKtczCfpGMs-Vqpbkew5NIOQ777MJ-KE" width="600px">
 
+<img src="https://drive.google.com/uc?export=view&id=1bwkGl3CkWN1aXs8I2NfrEk11fSJSGB5M" width="600px">
+
 # 9.
 
 ```bash
@@ -334,7 +336,6 @@ cat $crt_file | jq -r .data.private_key > ${dst_cert_path}/$key_file
 systemctl reload nginx
 rm $crt_file
 ```
-
 
 
 
