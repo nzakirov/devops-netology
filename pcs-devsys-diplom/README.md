@@ -88,6 +88,8 @@ root@vagrant:/# apt update && apt install vault
 
 # 4.
 
+Согласно задания запускаем vault server  в режиме dev:
+
 ```root@vagrant:/etc/vault.d# vault server -dev -dev-root-token-id root```
 
 ```
@@ -108,9 +110,13 @@ root@vagrant:/# apt update && apt install vault
 ==> Vault server started! Log data will stream in below:
 ```
 
+Добавляем необходимые переменные окружения:
+
 ```root@vagrant:~# export VAULT_ADDR=http://127.0.0.1:8200```
 
 ```root@vagrant:~# export VAULT_TOKEN=root```
+
+Активируем инфраструктуру открытых ключей:
 
 ```
 root@vagrant:~# vault secrets enable pki
@@ -122,12 +128,16 @@ root@vagrant:~# vault secrets tune -max-lease-ttl=87600h pki
 Success! Tuned the secrets engine at: pki/
 ```
 
+Создаем собственный корневой сертификат (CA):
+
 ```root@vagrant:~# vault write -field=certificate pki/root/generate/internal common_name="zakirov.su" ttl=87600h > CA_cert.crt```
 
 ```
 root@vagrant:~# vault write pki/config/urls issuing_certificates="$VAULT_ADDR/v1/pki/ca" crl_distribution_points="$VAULT_ADDR/v1/pki/crl"
 Success! Data written to: pki/config/urls
 ```
+
+Создаем промежуточный сертификат:
 
 ```
 root@vagrant:~# vault secrets enable -path=pki_int pki
@@ -152,14 +162,20 @@ root@vagrant:~# vault write  pki_int/intermediate/set-signed certificate=@interm
 Success! Data written to: pki_int/intermediate/set-signed
 ```
 
+Прописываем роли:
+
 ```
 root@vagrant:~# vault write pki_int/roles/zakirov-dot-su allowed_domains="zakirov.su" allow_subdomains=true max_ttl="720h"
 Success! Data written to: pki_int/roles/zakirov-dot-su
 ```
 
+Запрашиваем сертификат для сайта на срок 30 дней:
+
 ```
 root@vagrant:~# vault write -format=json pki_int/issue/zakirov-dot-su common_name="test1.zakirov.su" alt_names="test1.zakirov.su" ttl="720h" > test1.zakirov.su.crt
 ```
+
+Парсим файл сертификата в требуемый формат:
 
 ```
 root@vagrant:~# cat test1.zakirov.su.crt | jq -r .data.certificate > test1.zakirov.su.crt.pem
@@ -228,6 +244,8 @@ done.
 
 ```vagrant@vagrant:~$ sudo chmod -R 755 /var/www/test1.zakirov.su```
 
+Создаем тестовую страничку:
+
 ```vagrant@vagrant:~$ vim /var/www/test1.zakirov.su/html/index.html```
 
 ```vagrant@vagrant:~$ cat /var/www/test1.zakirov.su/html/index.html```
@@ -242,6 +260,8 @@ done.
     </body>
 </html>
 ```
+
+Создаем виртуальный хост сайта:
 
 ```vagrant@vagrant:~$ vim /etc/nginx/sites-available/test1.zakirov.su```
 
@@ -271,6 +291,8 @@ server {
 
 ```vagrant@vagrant:~$ sudo ln -s /etc/nginx/sites-available/test1.zakirov.su /etc/nginx/sites-enabled/```
 
+Проверяем конфиг nginx на ошибки:
+
 ```vagrant@vagrant:~$ sudo nginx -t```
 
 ```
@@ -278,9 +300,41 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
+Применяем изменения:
+
 ```vagrant@vagrant:~$ sudo systemctl restart nginx```
 
+# 8.
+
 <img src="https://drive.google.com/uc?export=view&id=1UKtczCfpGMs-Vqpbkew5NIOQ777MJ-KE" width="600px">
+
+# 9.
+
+```bash
+#!/bin/bash
+
+export VAULT_ADDR=http://127.0.0.1:8200
+export VAULT_TOKEN=root
+
+dst_cert_path=/etc/nginx/certificate
+domain=$1
+ttl=$2
+crt_file=${domain}.crt
+key_file=${domain}.crt.key
+pem_file=${domain}.crt.pem
+
+vault write -format=json pki_int/issue/zakirov-dot-su \
+	common_name="$domain" alt_names="$domain" \
+       	ttl="$ttl" > $crt_file 
+
+cat $crt_file | jq -r .data.certificate > ${dst_cert_path}/${pem_file} 
+cat $crt_file | jq -r .data.issuing_ca >> ${dst_cert_path}/$pem_file 
+cat $crt_file | jq -r .data.private_key > ${dst_cert_path}/$key_file
+
+systemctl reload nginx
+rm $crt_file
+```
+
 
 
 
