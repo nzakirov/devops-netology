@@ -358,4 +358,4 @@ rm $crt_file
 
 После очередного запуска скрипта через cron:
 
-<img src="https://drive.google.com/uc?export=view&id=1_8hfqA2Fu4uLMFZk04Puhj4tK7zxG9FC" width="600px">
+<img src="https://drive.google.com/uc?export=view&id=1lP9Aw9zHUSNCcjl_yNTTTo69_kc-wrRy" width="600px">
