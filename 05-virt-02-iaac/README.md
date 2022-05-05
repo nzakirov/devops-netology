@@ -21,4 +21,4 @@
 
 # 3.
 
-<img src="https://drive.google.com/uc?export=view&id=1Ub_jMB40IUUdeLGuPjEKgjm_NEmarmLV" width="600px">
+<img src="resources/image_002.png" width="600px">
