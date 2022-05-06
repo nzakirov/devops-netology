@@ -21,8 +21,13 @@
 
 # 3.
 
-<img src="resources/image_002.png" width="600px">
-
-<img src="resources/image_003.png" width="600px">
+<img src="resources/image_007.png" width="600px">
 
 <img src="resources/image_004.png" width="600px">
+
+
+# 4 (*) 
+
+<img src="resources/pic_002.png" width="600px">
+
+<img src="resources/image_006.png" width="600px">
