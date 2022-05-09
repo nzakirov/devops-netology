@@ -38,3 +38,10 @@ Gitlab сервер для реализации CI/CD процессов и пр
 
 <img src="resources/pic_010.png" width="800px">
 
+
+# 4.
+
+https://hub.docker.com/r/nzakirov/ansible
+
+
+
