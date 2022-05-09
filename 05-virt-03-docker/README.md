@@ -32,4 +32,9 @@ Gitlab сервер для реализации CI/CD процессов и пр
 
 # 3.
 
+<img src="resources/pic_008.png" width="600px">
+
+<img src="resources/pic_009.png" width="600px">
+
+<img src="resources/pic_010.png" width="600px">
 
