@@ -1,3 +1,40 @@
 *.swp
 *.json.*
 *.yaml.*
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+src/terraform/*.tfstate
+src/terraform/*.tfstate.*
+
+# Crash log files
+src/terraform/crash.log
+src/terraform/crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version 
+# control as they are data points which are potentially sensitive and subject 
+# to change depending on the environment.
+src/terraform/*.tfvars
+src/terraform/*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+src/terraform/override.tf
+src/terraform/override.tf.json
+src/terraform/*_override.tf
+src/terraform/*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+
+# Ignore CLI configuration files
+src/terraform/.terraformrc
+src/terraform/terraform.rc
+
+src/terraform/.terraform.lock.hcl
