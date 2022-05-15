@@ -38,3 +38,4 @@
 **/src/terraform/terraform.rc
 
 **/src/terraform/.terraform.lock.hcl
+**/src/terraform/key.json
