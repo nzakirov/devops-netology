@@ -8,7 +8,7 @@
       "image_name": "centos-7-base",
       "source_image_family": "centos-7",
       "ssh_username": "centos",
-      "subnet_id": "e9brqrgudl9dl3ak8qlh",
+      "subnet_id": "e9b2h6tfpud6d2i431kd",
       "token": "AQAAAABhH-BSAATuwUjd0wPEUkvOqJYWXr6fbU8",
       "type": "yandex",
       "use_ipv4_nat": true,

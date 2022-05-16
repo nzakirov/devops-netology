@@ -13,29 +13,15 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
-  - job_name: 'nodeexporter01'
+  - job_name: 'nodeexporter'
     scrape_interval: 5s
     static_configs:
       - targets: ['nodeexporter:9100']
-    labels:
-      instance: 'nodeexporter01'
 
-  - job_name: 'nodeexporter02'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['51.250.84.2:9100']
-    labels:
-      instance: 'nodeexporter02'
-
-  - job_name: 'cadvisor01'
+  - job_name: 'cadvisor'
     scrape_interval: 5s
     static_configs:
       - targets: ['cadvisor:8080']
-
-  - job_name: 'cadvisor02'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['51.250.84.2:8080']
 
   - job_name: 'prometheus'
     scrape_interval: 10s
