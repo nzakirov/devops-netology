@@ -9,4 +9,13 @@ Overlay Network - оверлейная сеть, это случай логич�
 
 # 2.
 
-  
+<img src="assets/05-virt-05-docker-swarm-001.png" width="800px">
+
+
+# 3.
+
+<img src="assets/05-virt-05-docker-swarm-002.png" width="800px">
+
+ # 4.
+
+
