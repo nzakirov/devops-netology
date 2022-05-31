@@ -1,3 +1,6 @@
+*In process...*
+
+
 # 1.
 
 Требуемые сервисы запустим посредством docker-compose:
@@ -52,6 +55,10 @@ services:
       - postgres
 ```
 <img src="assets/06-db-02-sql_001.png" width="800px">
+
+
+# 2.
+
 
 
 ## *To be continued. In process...*
