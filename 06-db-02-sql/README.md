@@ -59,6 +59,12 @@ services:
 
 # 2.
 
+- создайте пользователя test-admin-user и БД test_db
+
+```sql
+CREATE USER "test-admin-user" WITH PASSWORD 'drivemecrazy';
+CREATE DATABASE test_db;
+```
 
 
 ## *To be continued. In process...*
