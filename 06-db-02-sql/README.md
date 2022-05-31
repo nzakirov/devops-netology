@@ -62,7 +62,7 @@ services:
 - создайте пользователя test-admin-user и БД test_db
 
 ```sql
-CREATE USER "test-admin-user" WITH PASSWORD 'drivemecrazy';
+CREATE USER "test-admin-user" WITH PASSWORD 'pass123';
 CREATE DATABASE test_db;
 ```
 
