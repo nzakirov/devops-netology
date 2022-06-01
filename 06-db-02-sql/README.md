@@ -217,4 +217,29 @@ test_db=# SELECT COUNT (*) FROM clients;
 (1 row)
 
 ```
+
+# 4.
+
+```
+UPDATE clients SET order_id =
+    (SELECT id FROM orders WHERE product = 'Книга')
+WHERE id = 
+    (SELECT id FROM clients WHERE person = 'Иванов Иван Иванович');
+
+
+UPDATE clients SET order_id =
+    (SELECT id FROM orders WHERE product = 'Монитор')
+WHERE id = 
+    (SELECT id FROM clients WHERE person = 'Петров Петр Петрович');
+
+
+UPDATE clients SET order_id =
+    (SELECT id FROM orders WHERE product = 'Гитара')
+WHERE id = 
+    (SELECT id FROM clients WHERE person = 'Иоганн Себастьян Бах');
+```
+
+
+
+
 ## *To be continued. In process...*
