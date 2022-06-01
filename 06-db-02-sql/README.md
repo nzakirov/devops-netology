@@ -278,6 +278,123 @@ cost 15.61 - затраты на получение первой записи;
 rows = 239 - приблизительное количество возвращаемых записей при выполнении операци;
 width=420 - средний размер одной записи в байтах
 
+# 6.
+
+```
+❯ docker-compose exec postgres pg_dump -U postgres test_db -f /backup/backup_test_db.sql
+❯ docker-compose stop
+Stopping 06-db-02-sql_postgres_1 ... done
+Stopping pgadmin_container       ... done
+
+```
+Создаем docker-compose.yml для второго экземпляра PostgreSQL:
+```yaml
+version: "3.3"
+
+volumes:
+  dbdata: {}
+  pgadmin: {}
+  backup:
+    external: true
+    name: pg_backup
+
+networks:
+  postgres:
+    driver: bridge
+
+services:
+  postgres2:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "123"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+      - "backup:/backup"
+    ports:
+      - "5432:5432"
+    networks: 
+      - postgres
+
+  pgadmin2:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:6.9
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "nzakirov@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "123"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - postgres
+
+```
+
+```
+❯ docker-compose exec postgres2 psql -U postgres
+psql (12.11 (Debian 12.11-1.pgdg110+1))
+Type "help" for help.
+
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(3 rows)
 
 
+```
+
+```
+postgres=# CREATE USER "test-admin-user" WITH PASSWORD 'pass123';
+CREATE ROLE
+postgres=# CREATE DATABASE test_db;
+CREATE DATABASE
+```
+
+```
+❯ docker-compose exec postgres2 psql -U postgres -d test_db -f /backup/backup_test_db.sql
+```
+
+```
+❯ docker-compose exec postgres2 psql -U postgres
+psql (12.11 (Debian 12.11-1.pgdg110+1))
+Type "help" for help.
+
+postgres=# \c test_db;
+You are now connected to database "test_db" as user "postgres".
+test_db=# SELECT * FROM clients;
+ id |        person        | country | order_id 
+----+----------------------+---------+----------
+  4 | Ронни Джеймс Дио     | Russia  |         
+  5 | Ritchie Blackmore    | Russia  |         
+  1 | Иванов Иван Иванович | USA     |        3
+  2 | Петров Петр Петрович | Canada  |        4
+  3 | Иоганн Себастьян Бах | Japan   |        5
+(5 rows)
+
+test_db=# SELECT * FROM orders;
+ id | product |  price  
+----+---------+---------
+  1 | Шоколад |   10.00
+  2 | Принтер | 3000.00
+  3 | Книга   |  500.00
+  4 | Монитор | 7000.00
+  5 | Гитара  | 4000.00
+(5 rows)
+
+```
 ## *To be continued. In process...*
