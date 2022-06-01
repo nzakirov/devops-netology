@@ -185,6 +185,36 @@ SELECT * FROM information_schema.table_privileges
 
 # 3.
 
+```sql
+INSERT INTO orders (product, price) VALUES
+('Шоколад', 10),
+('Принтер', 3000),
+('Книга', 500),
+('Монитор', 7000),
+('Гитара', 4000);
+```
 
+```sql
+INSERT INTO clients (person, country) VALUES
+('Иванов Иван Иванович', 'USA'),
+('Петров Петр Петрович', 'Canada'),
+('Иоганн Себастьян Бах', 'Japan'),
+('Ронни Джеймс Дио', 'Russia'),
+('Ritchie Blackmore', 'Russia');
+```
 
+```
+test_db=# SELECT COUNT (*) FROM orders;
+ count 
+-------
+     5
+(1 row)
+
+test_db=# SELECT COUNT (*) FROM clients;
+ count 
+-------
+     5
+(1 row)
+
+```
 ## *To be continued. In process...*
