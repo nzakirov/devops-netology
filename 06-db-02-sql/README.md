@@ -117,8 +117,70 @@ test_db=# \l
 test_db=# 
 
 ```
-описание таблиц (describe)
-SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
-список пользователей с правами над таблицами test_db
+Описание таблиц (describe):
+```
+test_db=# \d orders
+                       Table "public.orders"
+ Column  |          Type          | Collation | Nullable | Default 
+---------+------------------------+-----------+----------+---------
+ id      | integer                |           | not null | 
+ product | character varying(128) |           |          | 
+ price   | numeric(10,2)          |           |          | 
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "clients" CONSTRAINT "clients_order_id_fkey" FOREIGN KEY (order_id) REFERENCES orders(id)
 
+test_db=# \d clients
+                      Table "public.clients"
+  Column  |         Type          | Collation | Nullable | Default 
+----------+-----------------------+-----------+----------+---------
+ id       | integer               |           | not null | 
+ person   | character varying(64) |           |          | 
+ country  | character varying(64) |           |          | 
+ order_id | integer               |           |          | 
+Indexes:
+    "clients_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "clients_order_id_fkey" FOREIGN KEY (order_id) REFERENCES orders(id)
+
+
+```
+SQL-запрос для выдачи списка пользователей с правами над таблицами test_db:
+```
+SELECT * FROM information_schema.table_privileges 
+ WHERE table_catalog = 'test_db'
+  AND table_schema  = 'public'
+  AND grantee != 'postgres';
+
+```
+список пользователей с правами над таблицами test_db
+```
+ grantor  |     grantee      | table_catalog | table_schema | table_name | privilege_type | is_grantable | with_hierarchy 
+----------+------------------+---------------+--------------+------------+----------------+--------------+----------------
+ postgres | test-admin-user  | test_db       | public       | orders     | INSERT         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | orders     | SELECT         | NO           | YES
+ postgres | test-admin-user  | test_db       | public       | orders     | UPDATE         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | orders     | DELETE         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | orders     | TRUNCATE       | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | orders     | REFERENCES     | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | orders     | TRIGGER        | NO           | NO
+ postgres | test-simple-user | test_db       | public       | orders     | INSERT         | NO           | NO
+ postgres | test-simple-user | test_db       | public       | orders     | SELECT         | NO           | YES
+ postgres | test-simple-user | test_db       | public       | orders     | UPDATE         | NO           | NO
+ postgres | test-simple-user | test_db       | public       | orders     | DELETE         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | clients    | INSERT         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | clients    | SELECT         | NO           | YES
+ postgres | test-admin-user  | test_db       | public       | clients    | UPDATE         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | clients    | DELETE         | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | clients    | TRUNCATE       | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | clients    | REFERENCES     | NO           | NO
+ postgres | test-admin-user  | test_db       | public       | clients    | TRIGGER        | NO           | NO
+ postgres | test-simple-user | test_db       | public       | clients    | INSERT         | NO           | NO
+ postgres | test-simple-user | test_db       | public       | clients    | SELECT         | NO           | YES
+ postgres | test-simple-user | test_db       | public       | clients    | UPDATE         | NO           | NO
+ postgres | test-simple-user | test_db       | public       | clients    | DELETE         | NO           | NO
+(22 rows)
+
+```
 ## *To be continued. In process...*
