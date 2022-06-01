@@ -243,14 +243,21 @@ WHERE id =
 Все пользователи, которые совершили заказ:
 
 ```sql
-test_db=# SELECT person FROM clients WHERE order_id IS NOT NULL;
-        person        
-----------------------
- Иванов Иван Иванович
- Петров Петр Петрович
- Иоганн Себастьян Бах
+test_db=# SELECT clients.person, orders.product
+FROM clients
+LEFT JOIN orders ON clients.order_id = orders.id
+WHERE orders.id IS NOT NULL;
+        person        | product 
+----------------------+---------
+ Иванов Иван Иванович | Книга
+ Петров Петр Петрович | Монитор
+ Иоганн Себастьян Бах | Гитара
 (3 rows)
 
 ```
+
+# 5.
+
+
 
 ## *To be continued. In process...*
