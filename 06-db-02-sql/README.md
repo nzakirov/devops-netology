@@ -240,6 +240,17 @@ WHERE id =
 ```
 
 
+Все пользователи, которые совершили заказ:
 
+```sql
+test_db=# SELECT person FROM clients WHERE order_id IS NOT NULL;
+        person        
+----------------------
+ Иванов Иван Иванович
+ Петров Петр Петрович
+ Иоганн Себастьян Бах
+(3 rows)
+
+```
 
 ## *To be continued. In process...*
