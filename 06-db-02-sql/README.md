@@ -64,7 +64,12 @@ services:
 ```sql
 CREATE USER "test-admin-user" WITH PASSWORD 'pass123';
 CREATE DATABASE test_db;
+
+\c test_db
 ```
+
+- **в БД test_db создайте таблицу orders и clients**
+
 
 
 ## *To be continued. In process...*
