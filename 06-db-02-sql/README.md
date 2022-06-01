@@ -71,13 +71,13 @@ CREATE DATABASE test_db;
 - **в БД test_db создайте таблицу orders и clients**
 ```sql
 CREATE TABLE orders (
-    id integer PRIMARY KEY,
+    id serial PRIMARY KEY,
     product varchar(128),
     price numeric(10,2)
 );
 
 CREATE TABLE clients (
-    id integer PRIMARY KEY,
+    id serial PRIMARY KEY,
     person varchar(64),
     country varchar(64),
     order_id integer default null,
@@ -123,7 +123,7 @@ test_db=# \d orders
                        Table "public.orders"
  Column  |          Type          | Collation | Nullable | Default 
 ---------+------------------------+-----------+----------+---------
- id      | integer                |           | not null | 
+ id      | integer                |           | not null |  nextval('clients_id_seq'::regclass) 
  product | character varying(128) |           |          | 
  price   | numeric(10,2)          |           |          | 
 Indexes:
@@ -135,7 +135,7 @@ test_db=# \d clients
                       Table "public.clients"
   Column  |         Type          | Collation | Nullable | Default 
 ----------+-----------------------+-----------+----------+---------
- id       | integer               |           | not null | 
+ id       | integer               |           | not null |  nextval('clients_id_seq'::regclass) 
  person   | character varying(64) |           |          | 
  country  | character varying(64) |           |          | 
  order_id | integer               |           |          | 
@@ -181,6 +181,10 @@ SELECT * FROM information_schema.table_privileges
  postgres | test-simple-user | test_db       | public       | clients    | UPDATE         | NO           | NO
  postgres | test-simple-user | test_db       | public       | clients    | DELETE         | NO           | NO
 (22 rows)
-
 ```
+
+# 3.
+
+
+
 ## *To be continued. In process...*
