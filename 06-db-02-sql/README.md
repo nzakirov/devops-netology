@@ -220,7 +220,7 @@ test_db=# SELECT COUNT (*) FROM clients;
 
 # 4.
 
-```
+```sql
 UPDATE clients SET order_id =
     (SELECT id FROM orders WHERE product = 'Книга')
 WHERE id = 
