@@ -1,6 +1,3 @@
-## *In process...*
-
-
 # 1.
 
 Требуемые сервисы запустим посредством docker-compose:
@@ -397,4 +394,3 @@ test_db=# SELECT * FROM orders;
 (5 rows)
 
 ```
-## *To be continued. In process...*
