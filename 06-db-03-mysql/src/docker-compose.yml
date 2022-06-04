@@ -1,0 +1,26 @@
+version: "3.1"
+
+networks:
+  mysql:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+    volumes:
+      - "./data:/var/lib/mysql"
+      - "./backup:/backup"
+      - "./custom:/etc/mysql/conf.d"
+    networks:
+      - mysql
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    networks:
+      - mysql
+    ports:
+      - 8080:8080

@@ -56,4 +56,21 @@ mysql> SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHE
 
 # 4.
 
+```
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+secure-file-priv= NULL
+
+# Custom config should go here
+!includedir /etc/mysql/conf.d/
+
+innodb_flush_log_at_trx_commit = 0 # Скорость IO важнее сохранности данных
+innodb_file_per_table = ON # Нужна компрессия таблиц для экономии места на диске
+innodb_log_buffer_size = 1M # Размер буффера с незакомиченными транзакциями 1 Мб
+innodb_buffer_pool_size = 1G # Буффер кеширования 30% от ОЗУ
+innodb_log_file_size = 100M # Размер файла логов операций 100 Мб
+```
+
 
