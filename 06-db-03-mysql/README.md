@@ -40,4 +40,13 @@ mysql> SHOW GRANTS FOR 'test'@'%';
 
 # 3.
 
+```sql
+mysql> SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA='test_db';
++------------+--------+
+| TABLE_NAME | ENGINE |
++------------+--------+
+| orders     | InnoDB |
++------------+--------+
+1 row in set (0.01 sec)
+```
 
