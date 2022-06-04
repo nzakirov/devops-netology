@@ -49,4 +49,11 @@ mysql> SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHE
 +------------+--------+
 1 row in set (0.01 sec)
 ```
+```sql
+| 12 | 0.03054825 | ALTER TABLE test_db.orders ENGINE = MyISAM                                |
+| 13 | 0.03221425 | ALTER TABLE test_db.orders ENGINE = InnoDB                                |
+```
+
+# 4.
+
 
