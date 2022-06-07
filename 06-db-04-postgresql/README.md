@@ -191,8 +191,7 @@ test_database=# select * from orders;
   8 | Dbiezdmin            |   501
 (8 rows)
 
-test_database=# select * from orders_1
-test_database-# ;;
+test_database=# select * from orders_1;
  id |        title         | price 
 ----+----------------------+-------
   1 | War and peace        |   100
@@ -227,4 +226,6 @@ test_database=# \dt
 
 # 4.
 
+```root@9a52d3741e3a:/# pg_dump -U postgres test_database -f /backup/test_database_`date '+%Y%m%d%H%M'`.sql```
 
+```CREATE UNIQUE INDEX title_unique ON orders (title, price);```
