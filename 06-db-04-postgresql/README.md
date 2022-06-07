@@ -89,4 +89,47 @@ CREATE DATABASE test_database;
 ```psql -U postgres -d test_database -f /backup/test_dump.sql```
 
 
+```sql
+test_database=# \dt
+         List of relations
+ Schema |  Name  | Type  |  Owner   
+--------+--------+-------+----------
+ public | orders | table | postgres
+(1 row)
 
+test_database=# \dS orders
+                                   Table "public.orders"
+ Column |         Type          | Collation | Nullable |              Default               
+--------+-----------------------+-----------+----------+------------------------------------
+ id     | integer               |           | not null | nextval('orders_id_seq'::regclass)
+ title  | character varying(80) |           | not null | 
+ price  | integer               |           |          | 0
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+
+test_database=# SELECT * FROM orders;
+ id |        title         | price 
+----+----------------------+-------
+  1 | War and peace        |   100
+  2 | My little database   |   500
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  6 | WAL never lies       |   900
+  7 | Me and my bash-pet   |   499
+  8 | Dbiezdmin            |   501
+(8 rows)
+```
+
+```sql
+test_database=# ANALYZE orders;
+ANALYZE
+```
+
+```sql
+test_database=# SELECT MAX(avg_width) FROM pg_stats WHERE tablename = 'orders';
+ max 
+-----
+  16
+(1 row)
+```
