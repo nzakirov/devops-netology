@@ -133,3 +133,98 @@ test_database=# SELECT MAX(avg_width) FROM pg_stats WHERE tablename = 'orders';
   16
 (1 row)
 ```
+
+# 3.
+
+Решать поставленную задачу разбиения разросшейся таблицы будем через партиционирование. Путем создания двух новых таблиц: ```orders_1``` и ```orders_2```.
+
+```sql
+test_database=# \dt
+         List of relations
+ Schema |  Name  | Type  |  Owner   
+--------+--------+-------+----------
+ public | orders | table | postgres
+(1 row)
+
+test_database=# ALTER TABLE orders RENAME TO orders_old;
+ALTER TABLE
+test_database=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner   
+--------+------------+-------+----------
+ public | orders_old | table | postgres
+(1 row)
+```
+
+```sql
+test_database=# CREATE TABLE orders (id serial, title varchar(80), price integer) PARTITION BY RANGE(price);
+CREATE TABLE
+
+test_database=# CREATE TABLE orders_1 PARTITION OF  orders FOR VALUES FROM (0) TO (500);
+CREATE TABLE
+
+test_database=# CREATE TABLE orders_2 PARTITION OF  orders FOR VALUES FROM (500) TO (1000);
+CREATE TABLE
+
+test_database=# \dt
+                 List of relations
+ Schema |    Name    |       Type        |  Owner   
+--------+------------+-------------------+----------
+ public | orders     | partitioned table | postgres
+ public | orders_1   | table             | postgres
+ public | orders_2   | table             | postgres
+ public | orders_old | table             | postgres
+(4 rows)
+
+test_database=# INSERT  INTO orders (id, title, price) SELECT * FROM  orders_old;
+INSERT 0 8
+test_database=# select * from orders;
+ id |        title         | price 
+----+----------------------+-------
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  7 | Me and my bash-pet   |   499
+  2 | My little database   |   500
+  6 | WAL never lies       |   900
+  8 | Dbiezdmin            |   501
+(8 rows)
+
+test_database=# select * from orders_1
+test_database-# ;;
+ id |        title         | price 
+----+----------------------+-------
+  1 | War and peace        |   100
+  3 | Adventure psql time  |   300
+  4 | Server gravity falls |   300
+  5 | Log gossips          |   123
+  7 | Me and my bash-pet   |   499
+(5 rows)
+
+test_database=# select * from orders_2;
+ id |       title        | price 
+----+--------------------+-------
+  2 | My little database |   500
+  6 | WAL never lies     |   900
+  8 | Dbiezdmin          |   501
+(3 rows)
+
+test_database=# DROP TABLE orders_old;
+DROP TABLE
+test_database=# \dt
+                List of relations
+ Schema |   Name   |       Type        |  Owner   
+--------+----------+-------------------+----------
+ public | orders   | partitioned table | postgres
+ public | orders_1 | table             | postgres
+ public | orders_2 | table             | postgres
+(3 rows)
+```
+
+Исключить изначально "ручное" разбиение таблицы было бы возможно, если на этапе начального проектирования создать партиционированную таблицу.
+
+
+# 4.
+
+
