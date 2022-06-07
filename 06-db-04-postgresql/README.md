@@ -79,4 +79,14 @@ services:
 
 # 2.
 
+Используя ```psql``` создаем БД ```test_database```.
+```sql
+CREATE DATABASE test_database;
+```
+
+Восстанавливаем бэкап БД в ```test_database```:
+
+```psql -U postgres -d test_database -f /backup/test_dump.sql```
+
+
 
