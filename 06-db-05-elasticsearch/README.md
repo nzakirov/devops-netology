@@ -163,4 +163,95 @@ yellow open   ind-2            KTwbGshFQP2uMA0H9Hx8nQ   2   1          0        
 }
 ```
 
+# 3.
 
+```
+❯ curl -XPOST "localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'{"type": "fs",  "settings": { "location":"/app/elasticsearch-7.17.4/snapshots" }}'
+{
+  "acknowledged" : true
+}
+```
+
+ ```
+ ❯ curl -XGET 'http://localhost:9200/_snapshot/netology_backup?pretty'
+{
+  "netology_backup" : {
+    "type" : "fs",
+    "settings" : {
+      "location" : "/app/elasticsearch-7.17.4/snapshots"
+    }
+  }
+}
+ ```
+
+```
+❯ curl -X PUT "localhost:9200/test?pretty" -H 'Content-Type: application/json' -d' {   "settings": {     "index": {       "number_of_shards": 1, "number_of_replicas": 0} } } '
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "test"
+}
+```
+
+```
+❯ curl 'localhost:9200/_cat/indices?v'
+health status index            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases TAzotmQdRoGNNNc3QHEjpA   1   0         41            0     38.8mb         38.8mb
+green  open   test             abZqh8zWS7GwYOWM28bTRA   1   0          0            0       226b           226b
+```
+
+```
+❯ curl -X PUT "localhost:9200/_snapshot/netology_backup/my_test?wait_for_completion=true"
+{"snapshot":{"snapshot":"my_test","uuid":"ro6aAZJhQNSqoZiHYf0g1g","repository":"netology_backup","version_id":7170499,"version":"7.17.4","indices":[".ds-ilm-history-5-2022.06.11-000001",".geoip_databases","test",".ds-.logs-deprecation.elasticsearch-default-2022.06.11-000001"],"data_streams":["ilm-history-5",".logs-deprecation.elasticsearch-default"],"include_global_state":true,"state":"SUCCESS","start_time":"2022-06-11T19:32:54.822Z","start_time_in_millis":1654975974822,"end_time":"2022-06-11T19:32:56.023Z","end_time_in_millis":1654975976023,"duration_in_millis":1201,"failures":[],"shards":{"total":4,"failed":0,"successful":4},"feature_states":[{"feature_name":"geoip","indices":[".geoip_databases"]}]}}%
+```
+
+```
+[elasticsearch@156fc829eda4 snapshots]$ pwd
+/app/elasticsearch-7.17.4/snapshots
+
+[elasticsearch@156fc829eda4 snapshots]$ ll
+total 0
+
+[elasticsearch@156fc829eda4 snapshots]$ ll
+total 48
+-rw-r--r-- 1 elasticsearch elasticsearch  1419 Jun 11 19:32 index-0
+-rw-r--r-- 1 elasticsearch elasticsearch     8 Jun 11 19:32 index.latest
+drwxr-xr-x 6 elasticsearch elasticsearch  4096 Jun 11 19:32 indices
+-rw-r--r-- 1 elasticsearch elasticsearch 29299 Jun 11 19:32 meta-ro6aAZJhQNSqoZiHYf0g1g.dat
+-rw-r--r-- 1 elasticsearch elasticsearch   706 Jun 11 19:32 snap-ro6aAZJhQNSqoZiHYf0g1g.dat
+```
+
+```
+❯ curl -X DELETE 'http://localhost:9200/test?pretty'
+{
+  "acknowledged" : true
+}
+❯ curl 'localhost:9200/_cat/indices?v'
+health status index            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases tr68ACThQaCksdLaq5-9Jg   1   0         41            0     38.8mb         38.8mb
+```
+
+```
+❯ curl -X PUT "localhost:9200/test-2?pretty" -H 'Content-Type: application/json' -d' {   "settings": {     "index": {       "number_of_shards": 1, "number_of_replicas": 0} } } '
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "test-2"
+}
+❯ curl 'localhost:9200/_cat/indices?v'
+health status index            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases tr68ACThQaCksdLaq5-9Jg   1   0         41            0     38.8mb         38.8mb
+green  open   test-2           OeF8d1RsTm-QtIchdewiKg   1   0          0            0       226b           226b
+```
+
+```
+❯ curl -X POST "localhost:9200/_snapshot/netology_backup/my_test/_restore?pretty" -H 'Content-Type: application/json' -d' {   "indices": "test" } '
+{
+  "accepted" : true
+}
+❯ curl 'localhost:9200/_cat/indices?v'
+health status index            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases tr68ACThQaCksdLaq5-9Jg   1   0         41            0     38.8mb         38.8mb
+green  open   test-2           OeF8d1RsTm-QtIchdewiKg   1   0          0            0       226b           226b
+green  open   test             dOx6JC5hTWiQcDkznd91lw   1   0          0            0       226b           226b
+```
