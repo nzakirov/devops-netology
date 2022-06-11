@@ -36,7 +36,7 @@ CMD ["/usr/sbin/init"]
 CMD ["/app/elasticsearch-7.17.4/bin/elasticsearch"]
 ```
 
-Образ в репозитории [docker hub] (https://hub.docker.com/repository/docker/nzakirov/elasticsearch)
+Образ в репозитории [docker hub](https://hub.docker.com/repository/docker/nzakirov/elasticsearch)
 
 Запускаем elasticsearch посредством docker-compose:
 
