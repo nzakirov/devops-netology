@@ -118,4 +118,29 @@ yellow open   ind-3            4s40jxt0Qf2-UfojtGX8yg   4   2          0        
 yellow open   ind-2            KTwbGshFQP2uMA0H9Hx8nQ   2   1          0            0       452b           452b
 ```
 
+Состояние кластера:
+```
+❯ curl 'localhost:9200/_cluster/health?pretty'
+{
+  "cluster_name" : "netology_test",
+  "status" : "yellow",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 10,
+  "active_shards" : 10,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 10,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 50.0
+}
+```
+
+*Как вы думаете, почему часть индексов и кластер находится в состоянии yellow?*
+Потому, что у некоторых индекстов объявлено ненулевое количество реплик, а количество активных нод всего 1.
+
 
