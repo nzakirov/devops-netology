@@ -144,4 +144,23 @@ yellow open   ind-2            KTwbGshFQP2uMA0H9Hx8nQ   2   1          0        
 
 Потому, что у некоторых индекстов объявлено ненулевое количество реплик, а количество активных нод всего 1.
 
+Удаление индексов:
+
+```
+❯ curl -X DELETE "localhost:9200/ind-1?pretty"
+{
+  "acknowledged" : true
+}
+
+❯ curl -X DELETE "localhost:9200/ind-2?pretty"
+{
+  "acknowledged" : true
+}
+
+❯ curl -X DELETE "localhost:9200/ind-3?pretty"
+{
+  "acknowledged" : true
+}
+```
+
 
