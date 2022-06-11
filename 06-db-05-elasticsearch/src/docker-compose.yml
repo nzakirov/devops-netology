@@ -1,0 +1,11 @@
+version: "3.3"
+
+
+services:
+  elasticsearch:
+    image: nzakirov/elasticsearch:7.17.4
+    volumes:
+      - ./elasticsearch.yml:/app/elasticsearch-7.17.4/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+      - "9300:9300"
