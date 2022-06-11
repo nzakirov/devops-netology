@@ -55,7 +55,7 @@ services:
 ```
 
 
-Ответ ```elasticsearch```:
+Ответ elasticsearch:
 ```json
 {
   "name" : "24192bbd8bbe",
@@ -74,6 +74,48 @@ services:
   },
   "tagline" : "You Know, for Search"
 }
+```
+
+# 2.
+
+```
+❯ curl -X PUT "localhost:9200/ind-1?pretty" -H 'Content-Type: application/json' -d' \
+{ "settings": { "index": { "number_of_shards": 1, "number_of_replicas": 0} } } '
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "ind-1"
+}
+```
+
+```
+❯ curl -X PUT "localhost:9200/ind-2?pretty" -H 'Content-Type: application/json' -d' \
+{   "settings": {     "index": {       "number_of_shards": 2, "number_of_replicas": 1} } } '
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "ind-2"
+}
+```
+
+```
+❯ curl -X PUT "localhost:9200/ind-3?pretty" -H 'Content-Type: application/json' -d' \
+{   "settings": {     "index": {       "number_of_shards": 4, "number_of_replicas": 2} } } '
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "ind-3"
+}
+```
+
+Список индексов и их статусы:
+```
+❯ curl 'localhost:9200/_cat/indices?v'
+health status index            uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases TAzotmQdRoGNNNc3QHEjpA   1   0         41            0     38.8mb         38.8mb
+green  open   ind-1            9Hz-WNOcRw69nO4DuABDWQ   1   0          0            0       226b           226b
+yellow open   ind-3            4s40jxt0Qf2-UfojtGX8yg   4   2          0            0       904b           904b
+yellow open   ind-2            KTwbGshFQP2uMA0H9Hx8nQ   2   1          0            0       452b           452b
 ```
 
 
