@@ -20,3 +20,22 @@
 
 <img src="assets/07-terraform-01-intro_001.png" width="800px">
 
+# 3.
+
+Задачу можно решить путем скачивания бинарника  новой версии и установки под другим именем по пути PATH. Это даст возможность использовать одновременно две версии:
+
+```
+❯ wget https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_amd64.zip
+
+❯ unzip terraform_1.2.3_linux_amd64.zip
+Archive:  terraform_1.2.3_linux_amd64.zip
+  inflating: terraform
+
+❯ cp terraform ~/bin/terraform-1.2.3
+
+```
+
+<img src="assets/07-terraform-01-intro_002.png" width="800px">
+
+
+
