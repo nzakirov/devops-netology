@@ -18,5 +18,5 @@
 
 # 2.
 
-
+<img src="assets/07-terraform-01-intro_001.png" width="800px">
 
