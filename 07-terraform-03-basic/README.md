@@ -11,4 +11,22 @@
 
 </details>
 
-aaa
+```
+❯ s3cmd mb s3://terraform-state-nz
+Bucket 's3://terraform-state-nz/' created
+
+❯ s3cmd ls
+2022-07-23 17:16  s3://terraform-state-nz
+```
+
+```terraform
+ backend "s3" {
+    endpoint = "storage.yandexcloud.net"
+    bucket = "terraform-state-nz"
+    region = "ru-central1"
+    key = "terraform.tfstate"
+    skip_region_validation = true
+    skip_credentials_validation = true
+  }
+```
+
