@@ -45,40 +45,6 @@ Bucket 's3://terraform-state-nz/' created
 >   * иначе будет создан локальный файл со стейтами.  
 </details>
 
-<details><summary>2.</summary>
-
-> Создайте два воркспейса `stage` и `prod`.
-</details>
-
-<details><summary>3.</summary>
-
-> В уже созданный `aws_instance` добавьте зависимость типа инстанса от вокспейса, что бы в разных ворскспейсах использовались разные `instance_type`.
-</details>
-
-<details><summary>4.</summary>
-
-> Добавим `count`. Для `stage` должен создаться один экземпляр `ec2`, а для `prod` два. 
-</details>
-
-<details><summary>5.</summary>
-
-> Создайте рядом еще один `aws_instance`, но теперь определите их количество при помощи `for_each`, а не `count`.
-</details>
-
-<details><summary>6.</summary>
-
-> Что бы при изменении типа инстанса не возникло ситуации, когда не будет ни одного инстанса добавьте параметр жизненного цикла `create_before_destroy = true` в один из рессурсов `aws_instance`.
-</details>
-
-<details><summary>7.</summary>
-
-> При желании поэкспериментируйте с другими параметрами и рессурсами.
->
-> В виде результата работы пришлите:
-> * Вывод команды `terraform workspace list`.
-> * Вывод команды `terraform plan` для воркспейса `prod`.  
-</details>
-
 ```
 ❯ terraform init \
       -backend-config "access_key=$TF_VAR_yandex_access_key" \
@@ -115,3 +81,37 @@ You're now on a new, empty workspace. Workspaces isolate their state,
 so if you run "terraform plan" Terraform will not see any existing state
 for this configuration.
 ```
+<details><summary>2.</summary>
+
+> Создайте два воркспейса `stage` и `prod`.
+</details>
+
+<details><summary>3.</summary>
+
+> В уже созданный `aws_instance` добавьте зависимость типа инстанса от вокспейса, что бы в разных ворскспейсах использовались разные `instance_type`.
+</details>
+
+<details><summary>4.</summary>
+
+> Добавим `count`. Для `stage` должен создаться один экземпляр `ec2`, а для `prod` два. 
+</details>
+
+<details><summary>5.</summary>
+
+> Создайте рядом еще один `aws_instance`, но теперь определите их количество при помощи `for_each`, а не `count`.
+</details>
+
+<details><summary>6.</summary>
+
+> Что бы при изменении типа инстанса не возникло ситуации, когда не будет ни одного инстанса добавьте параметр жизненного цикла `create_before_destroy = true` в один из рессурсов `aws_instance`.
+</details>
+
+<details><summary>7.</summary>
+
+> При желании поэкспериментируйте с другими параметрами и рессурсами.
+>
+> В виде результата работы пришлите:
+> * Вывод команды `terraform workspace list`.
+> * Вывод команды `terraform plan` для воркспейса `prod`.  
+</details>
+
