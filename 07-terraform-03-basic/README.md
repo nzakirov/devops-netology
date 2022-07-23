@@ -11,6 +11,9 @@
 
 </details>
 
+
+Создаем s3 бакет при помощи утилиты ```s3cmd```:
+
 ```
 ❯ s3cmd mb s3://terraform-state-nz
 Bucket 's3://terraform-state-nz/' created
@@ -18,6 +21,8 @@ Bucket 's3://terraform-state-nz/' created
 ❯ s3cmd ls
 2022-07-23 17:16  s3://terraform-state-nz
 ```
+
+Объявляем созданный бакет в terrafrom:
 
 ```terraform
  backend "s3" {
