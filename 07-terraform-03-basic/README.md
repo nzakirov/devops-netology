@@ -53,3 +53,40 @@ Bucket 's3://terraform-state-nz/' created
 > * Вывод команды `terraform workspace list`.
 > * Вывод команды `terraform plan` для воркспейса `prod`.  
 </details>
+
+```
+❯ terraform init \
+      -backend-config "access_key=$TF_VAR_yandex_access_key" \
+      -backend-config "secret_key=$TF_VAR_yandex_secret_key"
+
+Initializing the backend...
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Finding latest version of yandex-cloud/yandex...
+- Installing yandex-cloud/yandex v0.76.0...
+- Installed yandex-cloud/yandex v0.76.0 (unauthenticated)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+❯ terraform workspace new stage
+Created and switched to workspace "stage"!
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.
+```
