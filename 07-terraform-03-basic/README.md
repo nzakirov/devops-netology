@@ -86,6 +86,35 @@ for this configuration.
 > Создайте два воркспейса `stage` и `prod`.
 </details>
 
+```
+❯ terraform workspace list
+  default
+```
+
+```
+❯ terraform workspace new stage 
+Created and switched to workspace "stage"!
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.
+```
+
+```
+❯ terraform workspace new prod
+Created and switched to workspace "prod"!
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.
+```
+
+```
+❯ terraform workspace list
+  default
+* prod
+  stage
+```
 <details><summary>3.</summary>
 
 > В уже созданный `aws_instance` добавьте зависимость типа инстанса от вокспейса, что бы в разных ворскспейсах использовались разные `instance_type`.
