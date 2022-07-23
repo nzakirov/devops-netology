@@ -38,9 +38,7 @@ Bucket 's3://terraform-state-nz/' created
 ## Задача 2. Инициализируем проект и создаем воркспейсы. 
 
 <details> 
-<summary>
-### 1.
-</summary>
+<summary>1.</summary>
 
 > Выполните `terraform init`:
 >   * если был создан бэкэнд в S3, то терраформ создат файл стейтов в S3 и запись в таблице dynamodb.
