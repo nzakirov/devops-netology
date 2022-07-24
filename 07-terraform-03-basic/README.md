@@ -189,7 +189,7 @@ resource "yandex_compute_instance" "node" {
 > Что бы при изменении типа инстанса не возникло ситуации, когда не будет ни одного инстанса добавьте параметр жизненного цикла `create_before_destroy = true` в один из рессурсов `aws_instance`.
 </details>
 
-```terrraform
+```terraform
 data "yandex_compute_image" "ubuntu_image" {
     family = "ubuntu-2004-lts"
 }
