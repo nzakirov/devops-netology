@@ -230,6 +230,195 @@ resource "yandex_compute_instance" "node-foreach" {
   }
 }
 ```
+
+```
+❯ terraform plan
+data.yandex_compute_image.ubuntu_image: Reading...
+data.yandex_compute_image.ubuntu_image: Read complete after 0s [id=fd826dalmbcl81eo5nig]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.node-foreach["node01"] will be created
+  + resource "yandex_compute_instance" "node-foreach" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-authorized-keys" = <<-EOT
+                test1:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwAHu6HFygFru++SpE/FbTNazzXlQ6roEcglI1XUMu9qKsAMlV5JDwcz2UPHs1lpdI1xNem6ByqOBROQHFyKmYFHQRWcqcWUft+Do0aN+/2rSLcvsjJea172fhkcABEBHrl5aMU88RNWNBmTMuyDZn/MQaPkQpTBTXuYqJLjQwu4k3isNzqOp0lL5BGI821IWMlYOKL8OPGr9hA9QmaAZ+OhH66DGwBTKmW0vzRLpMT6Ad0ru5YZk/XkKXqUmCqhtw08jSirzywHwHtmvx3ICush6Uo7XkecmcBwntozDPwQzyFTZdGCicrLZa1exMFkG4UQ4zDW2TIWWDI/UlBsSgrs0mcA+QrPHeV6cUG+1cxwFHWU5tW++UmA5YDUs2UhWdF+MYzkyZeRZg5zlYGLubGE6t1OkCMdaRsypIKMVCrW+gMxPlBzE+rgR8xvqZ3ZsWGxx7DZL4N46asKuT1oTTg9/9b3BRfeVdCahUllQbgbGumyPPEwAG5x3e2xDefM8= znail@nail-PC
+            EOT
+          + "user-data"           = <<-EOT
+                #cloud-config
+                users:
+                  - name: test
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+            EOT
+        }
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd826dalmbcl81eo5nig"
+              + name        = (known after apply)
+              + size        = (known after apply)
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = (known after apply)
+        }
+    }
+
+  # yandex_compute_instance.node-foreach["node02"] will be created
+  + resource "yandex_compute_instance" "node-foreach" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-authorized-keys" = <<-EOT
+                test1:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwAHu6HFygFru++SpE/FbTNazzX..........dF+MYzkyZeRZg5zlYGLubGE6t1OkCMdaRsypIKMVCrW+gMxPlBzE+rgR8xvqZ3ZsWGxx7DZL4N46asKuT1oTTg9/9b3BRfeVdCahUllQbgbGumyPPEwAG5x3e2xDefM8= znail@nail-PC
+            EOT
+          + "user-data"           = <<-EOT
+                #cloud-config
+                users:
+                  - name: test
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+            EOT
+        }
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd826dalmbcl81eo5nig"
+              + name        = (known after apply)
+              + size        = (known after apply)
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = (known after apply)
+        }
+    }
+
+  # yandex_vpc_network.network_terraform will be created
+  + resource "yandex_vpc_network" "network_terraform" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "net_terraform"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_subnet.subnet_terraform will be created
+  + resource "yandex_vpc_subnet" "subnet_terraform" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet-prod"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.10.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+Plan: 4 to add, 0 to change, 0 to destroy.
+```
+
 <details><summary>7.</summary>
 
 > При желании поэкспериментируйте с другими параметрами и рессурсами.
