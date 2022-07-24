@@ -189,6 +189,23 @@ resource "yandex_compute_instance" "node" {
 > Что бы при изменении типа инстанса не возникло ситуации, когда не будет ни одного инстанса добавьте параметр жизненного цикла `create_before_destroy = true` в один из рессурсов `aws_instance`.
 </details>
 
+```terrraform
+resource "yandex_compute_instance" "node-foreach" {
+  for_each = toset(terraform.workspace == "prod" ? ["node01","node02"] : ["node01"])
+#  name                      = "${each.value}-${terraform.workspace == "prod" ? "prod" : "stage"}"
+  zone                      = "ru-central1-a"
+#  hostname                  = "${each.value}-${terraform.workspace == "prod" ? "prod" : "-stage"}.netology.yc"
+  allow_stopping_for_update = true
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
+  resources {
+    cores  = 2
+    memory = 2
+  }
+```
 <details><summary>7.</summary>
 
 > При желании поэкспериментируйте с другими параметрами и рессурсами.
