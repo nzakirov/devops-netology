@@ -248,11 +248,11 @@ Terraform will perform the following actions:
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
-      + hostname                  = (known after apply)
+      + hostname                  = "node01-prod.netology.yc"
       + id                        = (known after apply)
       + metadata                  = {
           + "ssh-authorized-keys" = <<-EOT
-                test1:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwAHu6HFygFru++SpE/FbTNazzXlQ6roEcglI1XUMu9qKsAMlV5JDwcz2UPHs1lpdI1xNem6ByqOBROQHFyKmYFHQRWcqcWUft+Do0aN+/2rSLcvsjJea172fhkcABEBHrl5aMU88RNWNBmTMuyDZn/MQaPkQpTBTXuYqJLjQwu4k3isNzqOp0lL5BGI821IWMlYOKL8OPGr9hA9QmaAZ+OhH66DGwBTKmW0vzRLpMT6Ad0ru5YZk/XkKXqUmCqhtw08jSirzywHwHtmvx3ICush6Uo7XkecmcBwntozDPwQzyFTZdGCicrLZa1exMFkG4UQ4zDW2TIWWDI/UlBsSgrs0mcA+QrPHeV6cUG+1cxwFHWU5tW++UmA5YDUs2UhWdF+MYzkyZeRZg5zlYGLubGE6t1OkCMdaRsypIKMVCrW+gMxPlBzE+rgR8xvqZ3ZsWGxx7DZL4N46asKuT1oTTg9/9b3BRfeVdCahUllQbgbGumyPPEwAG5x3e2xDefM8= znail@nail-PC
+                test1:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwAHu6HFygFru++SpE/FbTNa..................................................hA9QmaAZ+OhH66DGwBTKmW0vzRLpMT6Ad0ru5YZk/XkKXqUmCqhtw08jSirzywHwHtmvx3ICush6Uo7XkecmcBwntozDPwQzyFTZdGCicrLZa1exMFkG4UQ4zDW2TIWWDI/UlBsSgrs0mcA+QrPHeV6cUG+1cxwFHWU5tW++UmA5YDUs2UhWdF+MYzkyZeRZg5zlYGLubGE6t1OkCMdaRsypIKMVCrW+gMxPlBzE+rgR8xvqZ3ZsWGxx7DZL4N46asKuT1oTTg9/9b3BRfeVdCahUllQbgbGumyPPEwAG5x3e2xDefM8= znail@nail-PC
             EOT
           + "user-data"           = <<-EOT
                 #cloud-config
@@ -263,6 +263,7 @@ Terraform will perform the following actions:
                     sudo: ['ALL=(ALL) NOPASSWD:ALL']
             EOT
         }
+      + name                      = "node01-prod"
       + network_acceleration_type = "standard"
       + platform_id               = "standard-v1"
       + service_account_id        = (known after apply)
@@ -322,11 +323,11 @@ Terraform will perform the following actions:
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
-      + hostname                  = (known after apply)
+      + hostname                  = "node02-prod.netology.yc"
       + id                        = (known after apply)
       + metadata                  = {
           + "ssh-authorized-keys" = <<-EOT
-                test1:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwAHu6HFygFru++SpE/FbTNazzX..........dF+MYzkyZeRZg5zlYGLubGE6t1OkCMdaRsypIKMVCrW+gMxPlBzE+rgR8xvqZ3ZsWGxx7DZL4N46asKuT1oTTg9/9b3BRfeVdCahUllQbgbGumyPPEwAG5x3e2xDefM8= znail@nail-PC
+                test1:ssh-rsa AAAAB3NzaC1yc2E........................................NzqOp0lL5BGI821IWMlYOKL8OPGr9hA9QmaAZ+OhH66DGwBTKmW0vzRLpMT6Ad0ru5YZk/XkKXqUmCqhtw08jSirzywHwHtmvx3ICush6Uo7XkecmcBwntozDPwQzyFTZdGCicrLZa1exMFkG4UQ4zDW2TIWWDI/UlBsSgrs0mcA+QrPHeV6cUG+1cxwFHWU5tW++UmA5YDUs2UhWdF+MYzkyZeRZg5zlYGLubGE6t1OkCMdaRsypIKMVCrW+gMxPlBzE+rgR8xvqZ3ZsWGxx7DZL4N46asKuT1oTTg9/9b3BRfeVdCahUllQbgbGumyPPEwAG5x3e2xDefM8= znail@nail-PC
             EOT
           + "user-data"           = <<-EOT
                 #cloud-config
@@ -337,6 +338,7 @@ Terraform will perform the following actions:
                     sudo: ['ALL=(ALL) NOPASSWD:ALL']
             EOT
         }
+      + name                      = "node02-prod"
       + network_acceleration_type = "standard"
       + platform_id               = "standard-v1"
       + service_account_id        = (known after apply)
@@ -418,6 +420,7 @@ Terraform will perform the following actions:
 
 Plan: 4 to add, 0 to change, 0 to destroy.
 ```
+<img src="assets/07-terraform-03-basic_001.png" width="800px">
 
 <details><summary>7.</summary>
 
