@@ -120,6 +120,7 @@ for this configuration.
 > В уже созданный `aws_instance` добавьте зависимость типа инстанса от вокспейса, что бы в разных ворскспейсах использовались разные `instance_type`.
 </details>
 Создадим две подсети:
+
 ```terraform
 resource "yandex_vpc_subnet" "subnet_terraform" {
   name           = terraform.workspace == "prod" ? "subnet-prod" : "subnet-stage"
