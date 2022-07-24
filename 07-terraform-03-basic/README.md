@@ -119,6 +119,12 @@ for this configuration.
 
 > В уже созданный `aws_instance` добавьте зависимость типа инстанса от вокспейса, что бы в разных ворскспейсах использовались разные `instance_type`.
 </details>
+
+<details><summary>4.</summary>
+
+> Добавим `count`. Для `stage` должен создаться один экземпляр `ec2`, а для `prod` два. 
+</details>
+
 Создадим две подсети:
 
 ```terraform
@@ -171,10 +177,7 @@ resource "yandex_compute_instance" "node" {
   }
 }
 ```
-<details><summary>4.</summary>
-
-> Добавим `count`. Для `stage` должен создаться один экземпляр `ec2`, а для `prod` два. 
-</details>
+<img src="assets/07-terraform-03-basic_001.png" width="800px">
 
 <details><summary>5.</summary>
 
