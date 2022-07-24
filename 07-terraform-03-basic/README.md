@@ -119,7 +119,57 @@ for this configuration.
 
 > В уже созданный `aws_instance` добавьте зависимость типа инстанса от вокспейса, что бы в разных ворскспейсах использовались разные `instance_type`.
 </details>
+Создадим две подсети:
+```terraform
+resource "yandex_vpc_subnet" "subnet_terraform" {
+  name           = terraform.workspace == "prod" ? "subnet-prod" : "subnet-stage"
+  zone           = "ru-central1-a"
+  network_id     = "${yandex_vpc_network.network_terraform.id}"
+  v4_cidr_blocks = terraform.workspace == "prod" ? ["192.168.10.0/24"] : ["192.168.11.0/24"]
+}
+```
 
+Объявляем инстанс:
+
+```terraform
+data "yandex_compute_image" "ubuntu_image" {
+    family = "ubuntu-2004-lts"
+}
+
+resource "yandex_compute_instance" "node" {
+    name                      = terraform.workspace == "prod" ? "node${count.index}-prod" : "node${count.index}-stage"
+    zone                      = "ru-central1-a"
+    hostname                  = terraform.workspace == "prod" ? "node${count.index}-prod.netology.yc" : "node${count.index}-stage.netology.yc"
+    allow_stopping_for_update = true
+    count = terraform.workspace == "prod" ? 2 : 1
+
+    resources {
+      cores  = terraform.workspace == "prod" ? 2 : 1
+      memory = terraform.workspace == "prod" ? 2 : 1
+    }
+
+
+  
+  boot_disk {
+    initialize_params {
+        image_id = data.yandex_compute_image.ubuntu_image.id
+        # type        = "network-nvme"
+        # size        = "10"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet_terraform.id
+    nat = true
+  }
+
+  metadata = {
+    user-data = "${file("./meta.yml")}"
+    ssh-authorized-keys = "test1:${file("~/.ssh/id_rsa.pub")}"
+
+  }
+}
+```
 <details><summary>4.</summary>
 
 > Добавим `count`. Для `stage` должен создаться один экземпляр `ec2`, а для `prod` два. 
