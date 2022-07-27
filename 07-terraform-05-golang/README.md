@@ -16,6 +16,17 @@
 
 </details>
 
+```
+❯ sudo tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
+```
+
+```
+❯ go version
+go version go1.18.4 linux/amd64
+❯ echo $GOPATH
+/home/znail/go
+
+```
 ## Задача 2. Знакомство с gotour.
 
 <details><summary></summary>
@@ -37,7 +48,7 @@
 
 > Напишите программу для перевода метров в футы (1 фут = 0.3048 метр). Можно запросить исходные данные у пользователя, а можно статически задать в коде. Для взаимодействия с пользователем можно использовать функцию `Scanf`:
     
->   ```
+>  ```
 >    package main
 >    
 >    import "fmt"
