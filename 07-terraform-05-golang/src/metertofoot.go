@@ -7,11 +7,11 @@ func main() {
   var input float64
   fmt.Scanf("%f", &input)
 
-  output := meterToFeet(input)
+  output := MeterToFeet(input)
 
   fmt.Println(input, "meters =", output, "feet")
 }
 
-func meterToFeet(meters float64) float64 {
+func MeterToFeet(meters float64) float64 {
   return meters * 0.3048
 }

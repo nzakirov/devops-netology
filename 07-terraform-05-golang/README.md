@@ -76,12 +76,12 @@ func main() {
   var input float64
   fmt.Scanf("%f", &input)
 
-  output := meterToFeet(input)
+  output := MeterToFeet(input)
 
   fmt.Println(input, "meters =", output, "feet")
 }
 
-func meterToFeet(meters float64) float64 {
+func MeterToFeet(meters float64) float64 {
   return meters * 0.3048
 }
 ``` 
@@ -109,14 +109,11 @@ import "fmt"
 
 func main() {
   x := []int{48,96,86,68,57,82,63,70,37,34,83,27,19,97,9,17,}
-  fmt.Printf("Минимальный элемент: %d\n", minarr(x))
+  fmt.Printf("Минимальный элемент: %d\n", Minarr(x))
 }
 
-func minarr(xarr []int) int{
+func Minarr(xarr []int) int{
   min := xarr[0]
-
-
-
   for _, val := range xarr {
     if min > val {
       min = val
@@ -144,10 +141,10 @@ package main
 import "fmt"
 
 func main() {
-  fmt.Println("Числа делящиеся  на 3:", "\n", divby3())
+  fmt.Println("Числа делящиеся  на 3:", "\n", Divby3())
 }
 
-func divby3() []int{
+func Divby3() []int{
   arr := [] int{}
   for i := 3; i <= 100; i++ {
     if i % 3 == 0 {
@@ -169,3 +166,38 @@ func divby3() []int{
 <details><summary></summary>
 
 > Создайте тесты для функций из предыдущего задания. 
+
+</details>
+Протестируем функцию  из 3.1. Для этого создаем файл ```metertofoo_test.go```:
+
+```golang
+
+package main
+
+import "testing"
+import "fmt"
+
+func TestMeterToFeet(t *testing.T) {
+  // Arrange
+  var meter float64 = 3
+  var expected float64 = 0.9144000000000001 
+
+  // Act
+  result := MeterToFeet(meter)
+
+  // Assert
+  if result != expected {
+    fmt.Println("aaa")
+    //t.Errorf("Incorrect result. Expect %f, got %f", expected, result)
+    s := fmt.Sprintf("Incorrect result. Expect %f, got %f", expected, result)
+    t.Error(s)
+  }
+}
+```
+
+Запускаем тестирование:
+
+```
+❯ go test metertofoot.go metertofoot_test.go                                                          ─╯
+ok  	command-line-arguments	0.003s
+```

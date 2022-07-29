@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-  fmt.Println("Числа делящиеся  на 3:", "\n", divby3())
+  fmt.Println("Числа делящиеся  на 3:", "\n", Divby3())
 }
 
-func divby3() []int{
+func Divby3() []int{
   arr := [] int{}
   for i := 3; i <= 100; i++ {
     if i % 3 == 0 {
