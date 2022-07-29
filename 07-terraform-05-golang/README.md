@@ -65,7 +65,33 @@ go version go1.18.4 linux/amd64
 >    ```
 
 </details>
+
+```golang
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Print("Enter a value in meters: ")
+  var input float64
+  fmt.Scanf("%f", &input)
+
+  output := meterToFeet(input)
+
+  fmt.Println(input, "meters =", output, "feet")
+}
+
+func meterToFeet(meters float64) float64 {
+  return meters * 0.3048
+}
+``` 
  
+```
+❯ go run metertofoot.go                                                                               ─╯
+Enter a value in meters: 3
+3 meters = 0.9144000000000001 feet
+```
+
 <details><summary>2.</summary>
 
 > Напишите программу, которая найдет наименьший элемент в любом заданном списке, например:
@@ -75,12 +101,68 @@ go version go1.18.4 linux/amd64
 
 </details>
 
- 
+```golang
+
+package main
+
+import "fmt"
+
+func main() {
+  x := []int{48,96,86,68,57,82,63,70,37,34,83,27,19,97,9,17,}
+  fmt.Printf("Минимальный элемент: %d\n", minarr(x))
+}
+
+func minarr(xarr []int) int{
+  min := xarr[0]
+
+
+
+  for _, val := range xarr {
+    if min > val {
+      min = val
+    }
+  }
+  return min
+}
+```
+
+```
+❯ go run minlist.go                                                                                   ─╯
+Минимальный элемент: 9
+```
+
 <details><summary>3.</summary>
 
 > Напишите программу, которая выводит числа от 1 до 100, которые делятся на 3. То есть `(3, 6, 9, …)`.
 
 </details>
+
+```golang
+
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Числа делящиеся  на 3:", "\n", divby3())
+}
+
+func divby3() []int{
+  arr := [] int{}
+  for i := 3; i <= 100; i++ {
+    if i % 3 == 0 {
+      arr = append(arr, i)
+    }
+  }
+  return arr
+}
+```
+
+```
+❯ go run divby3.go                                                                                    ─╯
+Числа делящиеся  на 3: 
+ [3 6 9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 63 66 69 72 75 78 81 84 87 90 93 96 99]
+```
 
 ## Задача 4. Протестировать код (не обязательно).
 
