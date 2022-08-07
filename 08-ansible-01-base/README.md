@@ -319,8 +319,84 @@ ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    s
 ## Необязательная часть
 
 1. При помощи `ansible-vault` расшифруйте все зашифрованные файлы с переменными.
+
+```
+❯ ansible-vault decrypt --ask-vault-password group_vars/deb/*  group_vars/el/*
+Vault password:
+Decryption successful
+❯ cat group_vars/deb/examp.yml
+---
+  some_fact: "deb default fact"
+```
+
 2. Зашифруйте отдельное значение `PaSSw0rd` для переменной `some_fact` паролем `netology`. Добавьте полученное значение в `group_vars/all/exmp.yml`.
+
+```
+❯ ansible-vault encrypt_string "PaSSw0rd"
+New Vault password:
+Confirm New Vault password:
+Encryption successful
+!vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          62636361333039333732666563366264653631623339346337303033386131346231653231366339
+          3330306661353966356461393337316239386536343131370a383630323635666530656563353732
+          36373530373366656461656264303966303662646561666165656134346333336562346563656238
+          3437373737353438650a646663323936353639353866386461353435646161666339643161333838
+          3634%
+```
+
+```
+❯ cat group_vars/all/examp.yml
+---
+  some_fact: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    38643066646437356365386634383037646562353437373135613063373939353631313936373463
+    3062373935386563343264363063613937386161313566620a663137613839616237666535663330
+    65306138323139396663353632653464613633343766626232353236386362303532616139313362
+    3564343266316434340a376564643831343061643131613836383735653630356235643137633263
+    3434
+```
 3. Запустите `playbook`, убедитесь, что для нужных хостов применился новый `fact`.
+```
+❯ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+Vault password:
+
+PLAY [Print os facts] **************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
+[WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another Python interpreter
+could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.13/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] ********************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [localhost] => {
+    "msg": "Archlinux"
+}
+
+TASK [Print fact] ******************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+
+PLAY RECAP *************************************************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот](https://hub.docker.com/r/pycontribs/fedora).
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
 6. Все изменения должны быть зафиксированы и отправлены в вашей личный репозиторий.
