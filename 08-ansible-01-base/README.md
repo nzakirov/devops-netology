@@ -452,7 +452,7 @@ ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    s
 #!/bin/sh
 
 docker-compose up -d
-ansible-playbook -i ./inventory/prod.yml site.yml --ask-vault-password
+ansible-playbook -i ./playbook/inventory/prod.yml ./playbook/site.yml --ask-vault-password
 docker-compose down
 ```
 
