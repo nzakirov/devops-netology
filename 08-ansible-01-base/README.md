@@ -2,7 +2,18 @@
 
 ## Подготовка к выполнению
 >1. Установите ansible версии 2.10 или выше.
-
+```
+❯ ansible --version
+ansible [core 2.13.2]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/znail/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.10/site-packages/ansible
+  ansible collection location = /home/znail/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.10.5 (main, Jun  6 2022, 18:49:26) [GCC 12.1.0]
+  jinja version = 3.1.2
+  libyaml = True
+```
 
 >2. Создайте свой собственный публичный репозиторий на github с произвольным именем.
 
