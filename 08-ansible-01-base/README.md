@@ -67,7 +67,54 @@ site.yml:          msg: "{{ some_fact }}"
 
 >3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
 
+`❯ cat docker-compose.yml`
+
+```yaml
+version: '3'
+services:
+  centos7:
+    image: pycontribs/centos:7
+    container_name: centos7
+    restart: unless-stopped
+    entrypoint: "sleep infinity"
+
+  ubuntu:
+    image: pycontribs/ubuntu
+    container_name: ubuntu
+    restart: unless-stopped
+    entrypoint: "sleep infinity"
+```
 >4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
+
+```
+❯ ansible-playbook -i inventory/prod.yml site.yml
+
+PLAY [Print os facts] *************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] *******************************************************************************************************************
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+
+TASK [Print fact] *****************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el"
+}
+ok: [ubuntu] => {
+    "msg": "deb"
+}
+
+PLAY RECAP ************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
 
 >5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились следующие значения: для `deb` - 'deb default fact', для `el` - 'el default fact'.
 
