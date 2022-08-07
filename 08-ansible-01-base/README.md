@@ -448,7 +448,73 @@ ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    s
 ```
 
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
+```bash
+#!/bin/sh
 
+docker-compose up -d
+ansible-playbook -i ./inventory/prod.yml site.yml --ask-vault-password
+docker-compose down
+```
 
+```
+❯ ./script-ansible.sh
+[+] Running 4/4
+ ⠿ Network 08-ansible-01-base_default  Created                                                                                                 0.0s
+ ⠿ Container centos7                   Started                                                                                                 0.8s
+ ⠿ Container ubuntu                    Started                                                                                                 0.8s
+ ⠿ Container fedora                    Started                                                                                                 0.5s
+Vault password:
+
+PLAY [Print os facts] ******************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************
+[WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another
+Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.13/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+ok: [fedora]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] ************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [fedora] => {
+    "msg": "Fedora"
+}
+ok: [localhost] => {
+    "msg": "Archlinux"
+}
+
+TASK [Print fact] **********************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [fedora] => {
+    "msg": "PaSSw0rd"
+}
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+
+PLAY RECAP *****************************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+fedora                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[+] Running 4/4
+ ⠿ Container ubuntu                    Removed                                                                                                10.3s
+ ⠿ Container fedora                    Removed                                                                                                10.3s
+ ⠿ Container centos7                   Removed                                                                                                10.3s
+ ⠿ Network 08-ansible-01-base_default  Removed
+```
 6. Все изменения должны быть зафиксированы и отправлены в вашей личный репозиторий.
 
