@@ -398,6 +398,57 @@ localhost                  : ok=3    changed=0    unreachable=0    failed=0    s
 ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот](https://hub.docker.com/r/pycontribs/fedora).
+```
+❯ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+Vault password:
+
+PLAY [Print os facts] **************************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************************
+[WARNING]: Platform linux on host localhost is using the discovered Python interpreter at /usr/bin/python3.10, but future installation of another Python interpreter
+could change the meaning of that path. See https://docs.ansible.com/ansible-core/2.13/reference_appendices/interpreter_discovery.html for more information.
+ok: [localhost]
+ok: [fedora]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] ********************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [fedora] => {
+    "msg": "Fedora"
+}
+ok: [localhost] => {
+    "msg": "Archlinux"
+}
+
+TASK [Print fact] ******************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [fedora] => {
+    "msg": "PaSSw0rd"
+}
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+
+PLAY RECAP *************************************************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+fedora                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
+
+
 6. Все изменения должны быть зафиксированы и отправлены в вашей личный репозиторий.
 
