@@ -402,9 +402,13 @@ kibana                     : ok=9    changed=0    unreachable=0    failed=0    s
 ```
 
 >9. Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги.
+
 [README.md](https://github.com/nzakirov/devops-netology/blob/main/08-ansible-02-playbook/src/README.md)
+
 >10. Готовый playbook выложите в свой репозиторий, в ответ предоставьте ссылку на него.
+
 [playbook](https://github.com/nzakirov/devops-netology/tree/main/08-ansible-02-playbook/src)
+
 ## Необязательная часть
 
 >1. Приготовьте дополнительный хост для установки logstash.
