@@ -6,7 +6,6 @@
 >3. Подготовьте хосты в соотвтествии с группами из предподготовленного playbook. 
 
 `docker-compose.yml`
-
 ```yaml
 version: '3'
 services:
