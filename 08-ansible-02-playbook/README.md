@@ -26,7 +26,9 @@ services:
 
 ## Основная часть
 >1. Приготовьте свой собственный inventory файл `prod.yml`.
+
 `❯ cat inventory/prod.yml`
+
 ```yaml
 ---
 elasticsearch:
