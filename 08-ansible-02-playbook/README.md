@@ -4,8 +4,27 @@
 >1. Создайте свой собственный (или используйте старый) публичный репозиторий на github с произвольным именем.
 >2. Скачайте [playbook](./playbook/) из репозитория с домашним заданием и перенесите его в свой репозиторий.
 >3. Подготовьте хосты в соотвтествии с группами из предподготовленного playbook. 
+
+`docker-compose.yml`
+
+```yaml
+version: '3'
+services:
+  elastic:
+    image: pycontribs/ubuntu
+    container_name: elastic
+    restart: unless-stopped
+    entrypoint: "sleep infinity"
+
+  kibana:
+    image: pycontribs/ubuntu
+    container_name: kibana
+    restart: unless-stopped
+    entrypoint: "sleep infinity"
+```
+
 >4. Скачайте дистрибутив [java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) и положите его в директорию `playbook/files/`. 
->
+
 ## Основная часть
 >1. Приготовьте свой собственный inventory файл `prod.yml`.
 >2. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает kibana.
