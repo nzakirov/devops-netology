@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  elastic:
+    image: pycontribs/ubuntu
+    container_name: elastic
+    restart: unless-stopped
+    entrypoint: "sleep infinity"
+
+  kibana:
+    image: pycontribs/ubuntu
+    container_name: kibana
+    restart: unless-stopped
+    entrypoint: "sleep infinity"
+    
+
