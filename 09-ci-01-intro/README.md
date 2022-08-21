@@ -15,7 +15,7 @@
 >6. On test <-> On fix, Done
 >7. Done <-> Closed, Open
 
-<img src="assets/09-ci-01-intro_001.png" width="800px">
+<img src="assets/09-ci-01-intro_002.png" width="800px">
 
 >Остальные задачи должны проходить по упрощённому workflow:
 >1. Open -> On develop
@@ -24,9 +24,9 @@
 >4. On test <-> On develop, Done
 >5. Done <-> Closed, Open
 
-<img src="assets/09-ci-01-intro_002.png" width="800px">
-
 <img src="assets/09-ci-01-intro_003.png" width="800px">
+
+<img src="assets/09-ci-01-intro_001.png" width="800px">
 
 >Создать задачу с типом bug, попытаться провести его по всему workflow до Done. Создать задачу с типом epic, к ней привязать несколько задач с типом task, провести их по всему workflow до Done. При проведении обеих задач по статусам использовать kanban. Вернуть задачи в статус Open.
 >Перейти в scrum, запланировать новый спринт, состоящий из задач эпика и одного бага, стартовать спринт, провести задачи до состояния Closed. Закрыть спринт.
