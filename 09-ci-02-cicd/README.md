@@ -67,7 +67,12 @@ INFO: Linux 5.15.60-1-MANJARO amd64
 >   5. type: tar.gz
 >2. В него же загружаем такой же артефакт, но с version: 8_102
 >3. Проверяем, что все файлы загрузились успешно
+
+<img src="assets/09-ci-02-cicd_002.png" width="900px">
+
 >4. В ответе присылаем файл `maven-metadata.xml` для этого артефекта
+
+[maven-metadata.xml](src/maven-metadata.xml)
 
 ### Знакомство с Maven
 
