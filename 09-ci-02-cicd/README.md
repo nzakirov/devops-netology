@@ -29,6 +29,16 @@ INFO: Linux 5.15.60-1-MANJARO amd64
 ```
 
 >5. Запускаем анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`
+
+```
+❯ sonar-scanner \
+  -Dsonar.projectKey=netol-sonar \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=11593d83d3f49bcb4147e8b47b030e419223b949 \
+-Dsonar.coverage.exclusions=fail.py
+```
+
 >6. Смотрим результат в интерфейсе
 >7. Исправляем ошибки, которые он выявил(включая warnings)
 >8. Запускаем анализатор повторно - проверяем, что QG пройдены успешно
