@@ -100,7 +100,7 @@ OS name: "linux", version: "5.15.60-1-manjaro", arch: "amd64", family: "unix"
 >2. Запускаем команду `mvn package` в директории с `pom.xml`, ожидаем успешного окончания
 >3. Проверяем директорию `~/.m2/repository/`, находим наш артефакт
 
-<img src="assets/09-ci-02-cicd_002.png" width="900px">
+<img src="assets/09-ci-02-cicd_003.png" width="900px">
 
 >4. В ответе присылаем исправленный файл `pom.xml`
 
