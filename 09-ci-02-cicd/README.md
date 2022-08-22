@@ -81,6 +81,17 @@ INFO: Linux 5.15.60-1-MANJARO amd64
 >1. Скачиваем дистрибутив с [maven](https://maven.apache.org/download.cgi)
 >2. Разархивируем, делаем так, чтобы binary был доступен через вызов в shell (или меняем переменную PATH или любой другой удобный вам способ)
 >3. Проверяем `mvn --version`
+
+
+```
+❯ mvn --version
+Apache Maven 3.8.6 (84538c9988a25aec085021c365c560670ad80f63)
+Maven home: /opt/maven
+Java version: 18.0.2, vendor: N/A, runtime: /usr/lib/jvm/java-18-openjdk
+Default locale: ru_RU, platform encoding: UTF-8
+OS name: "linux", version: "5.15.60-1-manjaro", arch: "amd64", family: "unix"
+```
+
 >4. Забираем директорию [mvn](./mvn) с pom
 
 ### Основная часть
@@ -88,5 +99,9 @@ INFO: Linux 5.15.60-1-MANJARO amd64
 >1. Меняем в `pom.xml` блок с зависимостями под наш артефакт из первого пункта задания для Nexus (java с версией 8_282)
 >2. Запускаем команду `mvn package` в директории с `pom.xml`, ожидаем успешного окончания
 >3. Проверяем директорию `~/.m2/repository/`, находим наш артефакт
+
+<img src="assets/09-ci-02-cicd_002.png" width="900px">
+
 >4. В ответе присылаем исправленный файл `pom.xml`
 
+[pom.xml](src/pom.xml)
