@@ -20,6 +20,29 @@
 >6. Точка вызова: запуск скрипта
 >7. Если сборка происходит на ветке `master`: Образ должен пушится в docker registry вашего gitlab `python-api:latest`, иначе этот шаг нужно пропустить
 
+```
+❯ docker pull registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
+latest: Pulling from nzakirov/netology-09-ci-05-gitlab
+2d473b07cdd5: Already exists
+2054e173a103: Pull complete
+74e2eea5e4c7: Pull complete
+0275163eb24f: Pull complete
+8f8bc6b0bfc8: Pull complete
+d6217f932e52: Pull complete
+Digest: sha256:431f77f2d9e6b6d8250836aa7e5c06aa94819f620cb7b5cc000f5d0ac47a3ecc
+Status: Downloaded newer image for registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
+registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
+```
+
+```
+❯ docker run -d --name 09-ci-05-gitlab -p 5290:5290 registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
+77031c86319863177e1de62f21006ffa7090db827d73d30730e8ae359e1ade83
+```
+
+```
+❯ curl localhost:5290/get_info
+{"version": 3, "method": "GET", "message": "Already started"}
+```
 ### Product Owner
 
 >Вашему проекту нужна бизнесовая доработка: необходимо поменять JSON ответа на вызов метода GET `/rest/api/get_info`, необходимо создать Issue в котором указать:
