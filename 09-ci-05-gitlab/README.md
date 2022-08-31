@@ -50,6 +50,8 @@ registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
 >2. Текст с `{ "message": "Already started" }` на `{ "message": "Running"}`
 >3. Issue поставить label: feature
 
+[Issue](https://gitlab.com/nzakirov/netology-09-ci-05-gitlab/-/issues/1)
+
 ### Developer
 
 >Вам пришел новый Issue на доработку, вам необходимо:
