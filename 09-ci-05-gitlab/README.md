@@ -59,6 +59,7 @@ registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
 >2. Внести изменения по тексту из задания
 >3. Подготовить Merge Requst, влить необходимые изменения в `master`, проверить, что сборка прошла успешно
 
+[Merge Request](https://gitlab.com/nzakirov/netology-09-ci-05-gitlab/-/merge_requests/1)
 
 ### Tester
 
@@ -66,9 +67,20 @@ registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
 >1. Поднять докер-контейнер с образом `python-api:latest` и проверить возврат метода на корректность
 >2. Закрыть Issue с комментарием об успешности прохождения, указав желаемый результат и фактически достигнутый
 
+```
+❯ docker run -d --name 09-ci-05-gitlab -p 5290:5290 registry.gitlab.com/nzakirov/netology-09-ci-05-gitlab:latest
+d24afadb6d9964c1bd2e07f938075fb8a9eddbc313e9aa3bb6138a4cbdbc1412
+❯ curl localhost:5290/get_info
+{"version": 3, "method": "GET", "message": "Running"}
+```
+
+[Issue](https://gitlab.com/nzakirov/netology-09-ci-05-gitlab/-/issues/1)
+
 ## Итог
 
 >После успешного прохождения всех ролей - отправьте ссылку на ваш проект в гитлаб, как решение домашнего задания
+
+[Gitlab](https://gitlab.com/nzakirov/netology-09-ci-05-gitlab)
 
 ## Необязательная часть
 
