@@ -1,0 +1,44 @@
+---
+# defaults file for proxy_server
+nginx_revproxy_sites:
+  www.nzakirov.ru:
+    domains:
+      - www.nzakirov.ru
+      - nzakirov.ru
+    upstreams:
+      - { backend_address: "{{ lookup ('env', 'vm_app_private') }}", backend_port: 80 }   #app_to_www
+    ssl: true
+    letsencrypt: true
+    letsencrypt_email: "netology@zakirov.su"
+  grafana.nzakirov.ru:
+    domains:
+      - grafana.nzakirov.ru
+    upstreams:
+      - { backend_address: "{{ lookup ('env', 'vm_monitoring_private') }}", backend_port: 3000 }  #monitoring_grafana
+    ssl: true
+    letsencrypt: true
+    letsencrypt_email: "netology@zakirov.su"
+  prometheus.nzakirov.ru:
+    domains:
+      - prometheus.nzakirov.ru
+    upstreams:
+      - { backend_address: "{{ lookup ('env', 'vm_monitoring_private') }}", backend_port: 9090 }  #monitoring_prometheus
+    ssl: true
+    letsencrypt: true
+    letsencrypt_email: "netology@zakirov.su"
+  alertmanager.nzakirov.ru:
+    domains:
+      - alertmanager.nzakirov.ru
+    upstreams:
+      - { backend_address: "{{ lookup ('env', 'vm_monitoring_private') }}", backend_port: 9093 }  #monitoring_alertmanager
+    ssl: true
+    letsencrypt: true
+    letsencrypt_email: "netology@zakirov.su"
+  gitlab.nzakirov.ru:
+    domains:
+      - gitlab.nzakirov.ru
+    upstreams:
+      - { backend_address: "{{ lookup ('env', 'vm_gitlab_private') }}", backend_port: 80 }   #gitlab_to_gitlab
+    ssl: true
+    letsencrypt: true
+    letsencrypt_email: "netology@zakirov.su"

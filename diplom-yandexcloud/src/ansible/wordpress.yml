@@ -1,0 +1,9 @@
+---
+- hosts: wordpress
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - wordpress
+    - node_exporter
+

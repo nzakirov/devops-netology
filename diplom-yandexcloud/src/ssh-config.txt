@@ -1,0 +1,26 @@
+## Begin netology-diplom
+Host ntlg-proxy
+  Hostname nzakirov.ru
+  User virtops
+#  IdentityFile ~/.ssh/id_rsa_yc
+  Port 22
+
+Host 192.168.11.*
+  User virtops
+#  IdentityFile ~/.ssh/id_rsa_yc
+  ProxyJump virtops@nzakirov.ru
+  ProxyCommand ssh -W %h:%p nzakirov.ru 
+
+Host 192.168.12.*
+  User virtops
+#  IdentityFile ~/.ssh/id_rsa_yc
+  ProxyJump virtops@nzakirov.ru
+  ProxyCommand ssh -W %h:%p nzakirov.ru 
+
+Host 192.168.13.*
+  User virtops
+#  IdentityFile ~/.ssh/id_rsa_yc
+  ProxyJump virtops@nzakirov.ru
+  ProxyCommand ssh -W %h:%p nzakirov.ru 
+
+## End netology-diplom

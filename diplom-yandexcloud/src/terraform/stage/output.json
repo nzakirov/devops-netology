@@ -1,0 +1,42 @@
+{
+  "vm_app_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.11.23"
+  },
+  "vm_db01_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.12.15"
+  },
+  "vm_db02_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.13.8"
+  },
+  "vm_gitlab_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.12.12"
+  },
+  "vm_monitoring_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.11.15"
+  },
+  "vm_proxy_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.11.10"
+  },
+  "vm_proxy_public_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "51.250.6.40"
+  },
+  "vm_runner_private": {
+    "sensitive": false,
+    "type": "string",
+    "value": "192.168.13.33"
+  }
+}
