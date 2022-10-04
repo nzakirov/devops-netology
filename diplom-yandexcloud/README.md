@@ -58,7 +58,7 @@
 
 ### Создание инфраструктуры
 
-<details><summary></summary>
+<details>ddddddsss<summary></summary>
 
 Для начала необходимо подготовить инфраструктуру в YC при помощи [Terraform](https://www.terraform.io/).
 
