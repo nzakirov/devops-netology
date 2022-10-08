@@ -311,7 +311,6 @@ terraform init && terraform plan && terraform apply -auto-approve
 ![DNS](./assets/diplom-yandexcloud_pic-003.png)
 
 
-
 В файле [meta.yml](./src/terraform/stage/meta.yml) с метаданными описываем пользователя с именем virtops, под которым будут проводится все действия по SSH на развертываемой инфраструктуре (в качестве ключей указываем публичные SSH ключи хостов с которых планируется выполнять развертывание):
 
 ```yaml
@@ -326,6 +325,9 @@ users:
       - ssh-rsa .......... 
       - ssh-rsa .......... 
 ```
+Инфраструктура, согласно заданию, распределена на 3 подсети в разных зонах доступности:
+
+![Подсети](./assets/diplom-yandexcloud_pic-004.png)
 
 
 ### Установка Nginx и LetsEncrypt
