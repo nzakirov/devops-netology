@@ -331,13 +331,59 @@ users:
 
 Создано 7 виртуальных машин посредством [terraform кода](./src/terraform/stage/vm.tf), где в качестве proxy использован образ ```nat-instance-ubuntu-18-04-lts-v20220829``` и остальных 6-ти ВМ образ ```ubuntu-20-04-lts-v20220822```
 
-![ВМ](./assets/diplom-yandexcloud_pic-005.png)
+![ВМ](./assets/diplom-yandexcloud_pic-0
+05.png)
 
 Для минимизации расходов на использование облачных ресурсов, после запуска виртуальных машин, неиспользуемые ВМ (в процессе настройки и написании отчета) останавливаются посредством скрипта [stop_all_instances](./src/stop_all_instances.sh). Обратное действие - запуск осуществляется при помощи скрипта [start_all_instance.sh](./scr/start_all_instance.sh)
 
 В результате развертывания инфраструктура имеет следующий состав:
 
 ![Инфраструктура](./assets/diplom-yandexcloud_pic-006.png)
+
+Вывод манифестов terraform, в частности данных о выделенных при развертывании ip адресов, сохраняем в output.json:
+
+```bash 
+terraform output -json > output.json
+```
+
+Из которого затем экспортируем переменные ip адресов:
+
+```bash
+# add variables
+export vm_app_private=$(< output.json jq -r '.vm_app_private | .value')
+export vm_db01_private=$(< output.json jq -r '.vm_db01_private | .value')
+export vm_db02_private=$(< output.json jq -r '.vm_db02_private | .value')
+export vm_gitlab_private=$(< output.json jq -r '.vm_gitlab_private | .value')
+export vm_monitoring_private=$(< output.json jq -r '.vm_monitoring_private | .value')
+export vm_proxy_private=$(< output.json jq -r '.vm_proxy_private | .value')
+export vm_runner_private=$(< output.json jq -r '.vm_runner_private | .value')
+```
+Для дальнейшего развертывания необходимо чтобы доменные имена сервисов проекта были доступны и ресолвились актуальными значениями, для того чтобы избежать времени ожидания, когда записи распространятся по глобальной сети, указываем на локальном хосте в качестве DNS серверов непосредственно сами DNS сервера Yandex:  77.88.8.8 и 77.88.8.1 . Для этого написан bash скрипт [set-dns.sh](./src/set-dns.sh) в котором сохраняются в файл текущие DNS сервера и устанавливаются сервера Yandex. (реализация для Linux дистрибутивов где используется Network Manager). Обратное действие по восстановлению исходных DNS серверов на локальном хосте осуществляется при помощи скрипта [unset-dns.sh](./src/unset-dns.sh)
+Проверяем доступность proxy по доменному имени при помощи ping:
+
+```bash
+sleep 3
+(( count = 10 ))
+while [[ $count -ne 0 ]] ; do
+    ping -c 1 nzakirov.ru
+    ping_result=$?
+    if [[ $ping_result -eq 0 ]]
+    then
+        (( count = 1 ))
+    else
+        sleep 5
+    fi
+    (( count-- ))
+done
+
+if [[ $ping_result -eq 0 ]]
+then
+    echo "БЕЗ БУЛДЫРАБЫЗ!!! Host is available"
+else
+    ../../unset-dns.sh
+    exit
+fi
+```
 
 ### Установка Nginx и LetsEncrypt
 
