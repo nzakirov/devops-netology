@@ -306,6 +306,10 @@ terraform init -reconfigure \
 terraform workspace new stage
 terraform init && terraform plan && terraform apply -auto-approve
 ```
+Управление зоной DNS проекта осуществляется при помощи  YandexCloud DNS. Зона полностью автоматически управляется с помощью [terraform кода](./src/terraform/stage/yc_dns.tf). Создаются необходимые для проекта A записи внутри домена **nzakirov.ru**, указывающие на внешний ip виртуальной машины выполняющей роль proxy:
+
+![DNS](./assets/diplom-yandexcloud_pic-003.png)
+
 
 
 В файле [meta.yml](./src/terraform/stage/meta.yml) с метаданными описываем пользователя с именем virtops, под которым будут проводится все действия по SSH на развертываемой инфраструктуре (в качестве ключей указываем публичные SSH ключи хостов с которых планируется выполнять развертывание):
@@ -322,6 +326,8 @@ users:
       - ssh-rsa .......... 
       - ssh-rsa .......... 
 ```
+
+
 ### Установка Nginx и LetsEncrypt
 
 ### Установка кластера MySQL
