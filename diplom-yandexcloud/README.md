@@ -329,6 +329,9 @@ users:
 
 ![Подсети](./assets/diplom-yandexcloud_pic-004.png)
 
+Создано 7 виртуальных машин посредством [terraform кода](./src/terraform/stage/vm.tf), где в качестве proxy использован образ ```nat-instance-ubuntu-18-04-lts-v20220829``` и остальных 6-ти ВМ образ ubuntu-20-04-lts-v20220822
+
+![ВМ](./assets/diplom-yandexcloud_pic-005.png)
 
 ### Установка Nginx и LetsEncrypt
 
