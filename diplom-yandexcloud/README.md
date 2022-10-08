@@ -293,6 +293,8 @@ echo "# ===== S3 initialisation ... ============ #"
 cd terraform/s3/ || return
 terraform init && terraform plan &&  terraform apply -auto-approve
 ```
+![S3 бакет](./assets/diplom-yandexcloud_pic-002.png)
+
 Разворачиваем инфраструктуру c workspace [stage](./src/terraform/stage/) при помощи Terraform:
 
 ```
