@@ -257,7 +257,7 @@
 - вывода списка инстансов и их состояния
 реализованы при попомщи bash скрипта [init.sh](./src/init.sh)
 
-
+Вся инфраструктура разворачивается с нуля путем запуска скрипта, предварительно необходимо при этом иметь зарегистрированный сервисный ааккаунт в YandexCloud.
 
 ### Регистрация доменного имени
 
@@ -268,8 +268,58 @@
 
 ### Создание инфраструктуры
 
+Имеем сервисный аккаунт nzakirovs в YandexCloud, при этом секретные файлы полученные от YandexCloud расположены по путям (указанным в экспорте) на локальном хосте. 
+
+Для хранения состояния инфраструктуры используем [S3](./src/terraform/s3/) бакет, который разворачиваем при помощи Terraform. Для этого объявляем провайдера и переменные, которые реализованы во всем проекте через механизм экспорта путем добавления служебного префикса ```TF_VAR_```
+
+Экспортируем секреты:
+
+```bash
+# Export secret variables
+echo "# ====== Exporting YC credentials ... ==== #"
+export TF_VAR_YC_SERVICE_ACCOUNT_KEY_FILE=~/.config/yandex-cloud/sa_nzakirovs/key.json
+export TF_VAR_YC_STORAGE_ACCESS_KEY=`head -1 ~/.config/yandex-cloud/sa_nzakirovs/access.key`
+export TF_VAR_YC_STORAGE_SECRET_KEY="`head -1 ~/.config/yandex-cloud/sa_nzakirovs/secret.key`"
+export TF_VAR_YC_CLOUD_ID="`yc config get cloud-id`"
+export TF_VAR_YC_FOLDER_ID="`yc config get folder-id`"
+export TF_VAR_YC_TOKEN="`yc iam create-token`"
+```
+
+Инициализируем S3 бакет:
+
+```bash
+# S3 init
+echo "# ===== S3 initialisation ... ============ #"
+cd terraform/s3/ || return
+terraform init && terraform plan &&  terraform apply -auto-approve
+```
+Разворачиваем инфраструктуру c workspace [stage](./src/terraform/stage/) при помощи Terraform:
+
+```
+echo "#===== Deployment infrastructure ... ==== #"
+cd ../stage || return
+terraform init -reconfigure \
+      -backend-config "access_key=$TF_VAR_YC_STORAGE_ACCESS_KEY" \
+      -backend-config "secret_key=$TF_VAR_YC_STORAGE_SECRET_KEY"
+terraform workspace new stage
+terraform init && terraform plan && terraform apply -auto-approve
+```
 
 
+В файле [meta.yml](./src/terraform/stage/meta.yml) с метаданными описываем пользователя с именем virtops, под которым будут проводится все действия по SSH на развертываемой инфраструктуре (в качестве ключей указываем публичные SSH ключи хостов с которых планируется выполнять развертывание):
+
+```yaml
+#cloud-config
+users:
+  - name: virtops
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa ..........
+      - ssh-rsa .......... 
+      - ssh-rsa .......... 
+```
 ### Установка Nginx и LetsEncrypt
 
 ### Установка кластера MySQL
