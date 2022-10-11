@@ -410,6 +410,8 @@ envsubst < "hosts.template" > "hosts"
 
 ![Nginx](./assets/diplom-yandexcloud_pic-007.png)
 
+![certificates](./assets/diplom-yandexcloud_pic-008.png)
+
 ### Установка кластера MySQL
 
 ### Установка WordPress
