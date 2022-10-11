@@ -412,7 +412,14 @@ envsubst < "hosts.template" > "hosts"
 
 ![certificates](./assets/diplom-yandexcloud_pic-008.png)
 
+Переменные задаются при помощи механизма шаблонов Jinja2 в файле [./defaults/main.yml](./src/ansible/proxy_server/defaults/main.yml). 
+
 ### Установка кластера MySQL
+
+При помощи роли [mysql](./src/ansible/roles/mysql/) устанавливаем и настраиваем кластер **MySQL master-slave replication**.
+Переменные задаются при помощи шаблонов  Jinja2 в файле [./defaults/main.yml](./src/ansible/mysql/defaults/main.yml)  
+
+![db](./assets/diplom-yandexcloud_pic-009.png)
 
 ### Установка WordPress
 
