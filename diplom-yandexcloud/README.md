@@ -406,6 +406,10 @@ envsubst < "hosts.template" > "hosts"
 
 ### Установка Nginx и LetsEncrypt
 
+При помощи роли [proxy_server](./src/ansible/roles/proxy_server/) разворачиваем на базе **NGINX reverse proxy**, устанавливаем **LetsEncrypt**  и получаем бесплатные сертификаты
+
+![Nginx](./assets/diplom-yandexcloud_pic-007.png)
+
 ### Установка кластера MySQL
 
 ### Установка WordPress
