@@ -423,6 +423,15 @@ envsubst < "hosts.template" > "hosts"
 
 ### Установка WordPress
 
+При помощи роли [wordpress](./src/ansible/roles/wordpress/) устанавливаем следующие сервисы:
+- **apache2**;
+- **php-7.2**;
+- **wordpress**
+
+Wordpress подключается к ранее установленному кластеру MySQL.
+Переменные задаются при помощи шаблонов  Jinja2 в файле [./defaults/main.yml](./src/ansible/roles/wordpress/defaults/main.yml)  
+
+
 ### Установка Gitlab CE, Gitlab Runner и настройка CI/CD
 
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
