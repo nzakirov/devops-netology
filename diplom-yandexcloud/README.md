@@ -440,4 +440,6 @@ Wordpress подключается к ранее установленному к
 
 ### Установка Gitlab CE, Gitlab Runner и настройка CI/CD
 
+При помощи ролей разворачиваем [gitlab](./src/ansible/roles/gitlab/) (root/1q2w3e4r) и [runner](./src/ansible/roles/runner) (подключается автоматически, runners_registration_token задан в конфигурации).
+
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
