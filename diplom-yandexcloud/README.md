@@ -431,6 +431,12 @@ envsubst < "hosts.template" > "hosts"
 Wordpress подключается к ранее установленному кластеру MySQL.
 Переменные задаются при помощи шаблонов  Jinja2 в файле [./defaults/main.yml](./src/ansible/roles/wordpress/defaults/main.yml)  
 
+![wordpress1](./assets/diplom-yandexcloud_pic-010.png)
+
+![wordpress2](./assets/diplom-yandexcloud_pic-011.png)
+
+![wordpress3](./assets/diplom-yandexcloud_pic-012.png)
+
 
 ### Установка Gitlab CE, Gitlab Runner и настройка CI/CD
 
