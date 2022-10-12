@@ -443,4 +443,6 @@ Wordpress подключается к ранее установленному к
 При помощи ролей разворачиваем [gitlab](./src/ansible/roles/gitlab/) (*root/1q2w3e4r*) и [runner](./src/ansible/roles/runner) (*подключается автоматически, runners_registration_token задан в конфигурации*).
 Переменные задаются при помощи шаблонов  Jinja2 в файлах: [./defaults/main.yml](./src/ansible/roles/gitlab/defaults/main.yml) и [./defaults/main.yml](./src/ansible/roles/runner/defaults/main.yml) 
 
+![gitlab1](./assets/diplom-yandexcloud_pic-013.png)
+
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
