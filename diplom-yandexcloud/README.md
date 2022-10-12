@@ -447,4 +447,91 @@ Wordpress подключается к ранее установленному к
 
 ![runner1](./assets/diplom-yandexcloud_pic-014.png)
 
+Создаем **.gitlab-ci.yml**
+
+```yaml
+---
+before_script:
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$ssh_key" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+stages:
+  - deploy
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Deploying application..."
+    - ssh -o StrictHostKeyChecking=no virtops@app.nzakirov.ru sudo chown virtops /var/www/www.nzakirov.ru/wordpress/ -R
+    - rsync -rvz -e "ssh -o StrictHostKeyChecking=no" ./ virtops@app.nzakirov.ru:/var/www/www.nzakirov.ru/wordpress/
+    - ssh -o StrictHostKeyChecking=no virtops@app.nzakirov.ru rm -rf /var/www/www.nzakirov.ru/wordpress/.git
+    - ssh -o StrictHostKeyChecking=no virtops@app.nzakirov.ru sudo chown www-data /var/www/www.nzakirov.ru/wordpress/ -R
+```
+ 
+ Предварительно добавив **ssh-key** в *Settings/CI/CD/Variables*
+
+
+ Для демонстрации работы CI/CD pipeline склонируем созданный на gitlab репозиторий wordpress на локальную машину и добавим для теста файл info.php:
+
+ ```
+ ❯ git clone git@192.168.12.12:gitlab-instance-6a41b4b2/wordpress.git
+Клонирование в «wordpress»…
+The authenticity of host '192.168.12.12 (<no hostip for proxy command>)' can't be established.
+ED25519 key fingerprint is SHA256:QpdkE5mHoHZAnVs9texwWZ9SjP3NPz7jxOYfSIVvx1Y.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.12.12' (ED25519) to the list of known hosts.
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 10 (delta 3), reused 0 (delta 0), pack-reused 0
+Получение объектов: 100% (10/10), готово.
+Определение изменений: 100% (3/3), готово.
+
+❯ cd wordpress
+❯ git status
+На ветке main
+Ваша ветка обновлена в соответствии с «origin/main».
+
+нечего коммитить, нет изменений в рабочем каталоге
+❯ ls -lah
+итого 16K
+drwxrwxr-x 3 znail znail 4,0K окт 12 20:27 .
+drwxrwxr-x 3 znail znail 4,0K окт 12 20:26 ..
+drwxrwxr-x 8 znail znail 4,0K окт 12 20:27 .git
+-rw-rw-r-- 1 znail znail  779 окт 12 20:27 .gitlab-ci.yml
+
+❯ lvim info.php
+❯ git status
+На ветке main
+Ваша ветка обновлена в соответствии с «origin/main».
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+	info.php
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+❯ git tag
+❯ git tag -a v1.0 -m "my version 1.0"
+❯ git tag
+v1.0
+❯ git add info.php
+❯ git status
+На ветке main
+Ваша ветка обновлена в соответствии с «origin/main».
+
+Изменения, которые будут включены в коммит:
+  (используйте «git restore --staged <файл>…», чтобы убрать из индекса)
+	новый файл:    info.php
+
+❯ git commit -m "Add info.php"
+[main 85b0503] Add info.php
+ 1 file changed, 1 insertion(+)
+ create mode 100644 info.php
+
+ ```
+
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
