@@ -445,4 +445,6 @@ Wordpress подключается к ранее установленному к
 
 ![gitlab1](./assets/diplom-yandexcloud_pic-013.png)
 
+![runner1](./assets/diplom-yandexcloud_pic-014.png)
+
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
