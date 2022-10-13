@@ -7,8 +7,8 @@ yc compute instance start db02
 yc compute instance start app 
 yc compute instance start gitlab 
 yc compute instance start runner 
-yc compute instance start monitoring 
+#yc compute instance start monitoring 
+
 yc compute instance list
 ./set-dns-records.sh
 yc dns zone list-records --name  nzakirov-ru
-

@@ -24,7 +24,6 @@ terraform init -reconfigure \
       -backend-config "access_key=$TF_VAR_YC_STORAGE_ACCESS_KEY" \
       -backend-config "secret_key=$TF_VAR_YC_STORAGE_SECRET_KEY"
 terraform workspace new stage
-#terraform init && terraform plan 
 terraform init && terraform plan && terraform apply -auto-approve
 
 terraform output -json > output.json
@@ -42,7 +41,6 @@ echo "# ===== Down VPN... ============ #"
 wg-quick down wg0-client
 
 ../../set-dns.sh
-#~/bin/mivpnup
 sleep 3
 (( count = 10 ))
 while [[ $count -ne 0 ]] ; do
@@ -62,7 +60,6 @@ then
     echo "БЕЗ БУЛДЫРАБЫЗ!!! Host is available"
 else
     ../../unset-dns.sh
-    ~/bin/mivpnup
     exit
 fi
 cat ../../ssh-config.txt >> ~/.ssh/config

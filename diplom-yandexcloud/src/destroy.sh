@@ -26,30 +26,12 @@ done
 
 echo "# ======= Restore DNSs... ========= #"
 ../../unset-dns.sh
-#~/bin/mivpnup
 
 # Destroy s3
 echo "# ======= Destroing S3... ========= #"
 echo "# =======  Current path: " `pwd`
 cd ../s3 || return
 terraform destroy -auto-approve
-#echo "# ======= Deleting local files... ========= #"
-#if [ -d .terraform ]
-#then
-#  rm -f -r .terraform
-#fi
-#if [ -f .terraform.lock.hcl ]
-#then
-#  rm -f .terraform.lock.hcl
-#fi
-#if [ -f .terraform.tfstate ]
-#then
-#  rm -f .terraform.tfstate
-#fi
-#if [ -f .terraform.tfstate.backup ]
-#then
-#  rm -f .terraform.tfstate.backup
-#fi
 
 echo "# ======= YC VPC network list... ========= #"
 yc vpc network list
