@@ -549,10 +549,59 @@ To 192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
 
 Весь процесс развертывания представлен в виде записи экрана терминала
 
+https://user-images.githubusercontent.com/48696003/195669379-959fe494-c632-4a91-9b34-61d2af16435a.mp4
+
 <details><summary></summary>
 
 следующие фрагменты по порядку:
 
+https://user-images.githubusercontent.com/48696003/195669453-c4b5997c-39f5-4369-9caf-fc4662f88b37.mp4
+
+https://user-images.githubusercontent.com/48696003/195669500-60e400d1-655b-4fba-86ac-a67f966531cf.mp4
+
+https://user-images.githubusercontent.com/48696003/195669525-c6b61337-b416-4c47-8001-62c1ce1e7d20.mp4
+
+https://user-images.githubusercontent.com/48696003/195669551-9ec185bc-c0d3-4f9e-9bcc-347973aa6e03.mp4
+
+https://user-images.githubusercontent.com/48696003/195669578-f1de4861-acb0-4ecc-b3bd-efd7a9cf2048.mp4
+
+https://user-images.githubusercontent.com/48696003/195669596-f437bdb1-2704-490e-82f2-c80910cb6ee4.mp4
+
+https://user-images.githubusercontent.com/48696003/195669622-ad433e12-9e04-4f72-9c51-9bbfa7239e9e.mp4
+
+https://user-images.githubusercontent.com/48696003/195669642-2c04b058-5737-446a-8f70-b389b277a611.mp4
+
+https://user-images.githubusercontent.com/48696003/195669657-f26d90b9-ca37-41a7-a847-b280abb79b1f.mp4
+
+https://user-images.githubusercontent.com/48696003/195669673-8cb5afba-b96b-4854-b24a-b3857be1afbd.mp4
+
+https://user-images.githubusercontent.com/48696003/195669699-778285db-22d9-4d8e-9e7c-3251815b3268.mp4
+
+https://user-images.githubusercontent.com/48696003/195669715-aee2f2d5-6bd1-438a-b47b-999b4bb7a3ee.mp4
+
+https://user-images.githubusercontent.com/48696003/195669738-adcdd0d9-f003-4c4b-8d9b-70c9ab91f110.mp4
+
+https://user-images.githubusercontent.com/48696003/195669764-07410898-072b-4655-a06c-6587261775f4.mp4
+
+https://user-images.githubusercontent.com/48696003/195669784-030e256c-3c54-4c5c-9ca4-c9572cbfe5ac.mp4
+
+https://user-images.githubusercontent.com/48696003/195669934-131abae0-7688-4a8f-a0d5-e7cd6b1ac2ad.mp4
+
+https://user-images.githubusercontent.com/48696003/195670056-321dbeae-4d4f-4ecb-9330-e87b3b622481.mp4
+
+https://user-images.githubusercontent.com/48696003/195670090-8c7b7593-81d3-4611-b0db-c033fe71b5e8.mp4
+
+https://user-images.githubusercontent.com/48696003/195670139-be33aff0-1c59-4901-aaa7-5695489473f1.mp4
+
+https://user-images.githubusercontent.com/48696003/195670159-99c6c7fb-1610-4019-8e64-36b2d512bda6.mp4
+
+https://user-images.githubusercontent.com/48696003/195670188-c07f012c-db89-4dc3-abb5-df2347ae68ab.mp4
+
+https://user-images.githubusercontent.com/48696003/195670212-8b6bfc00-602e-4040-aa14-c73ccd24f3c7.mp4
+
+https://user-images.githubusercontent.com/48696003/195670238-ab1a1ed8-437a-4891-8d9d-d20724a2dae4.mp4
+
+https://user-images.githubusercontent.com/48696003/195670703-7adfd811-528b-47b2-911a-29ce70d1f049.mp4
 
 </details>
 
