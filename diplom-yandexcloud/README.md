@@ -523,4 +523,11 @@ To 192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
 
  ```
 
+Результат работы CI/CD pipeline
+
+![cicd1](./assets/diplom-yandexcloud_pic-016.png)
+
+![cicd3](./assets/diplom-yandexcloud_pic-017.png)
+
+![cicd2](./assets/diplom-yandexcloud_pic-018.png)
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
