@@ -473,38 +473,29 @@ deploy-job:
  
  Предварительно добавив **ssh-key** в *Settings/CI/CD/Variables*
 
+![ssh_key](./assets/diplom-yandexcloud_pic-015.png)
 
  Для демонстрации работы CI/CD pipeline склонируем созданный на gitlab репозиторий wordpress на локальную машину и добавим для теста файл info.php:
 
  ```
- ❯ git clone git@192.168.12.12:gitlab-instance-6a41b4b2/wordpress.git
-Клонирование в «wordpress»…
-The authenticity of host '192.168.12.12 (<no hostip for proxy command>)' can't be established.
-ED25519 key fingerprint is SHA256:QpdkE5mHoHZAnVs9texwWZ9SjP3NPz7jxOYfSIVvx1Y.
-This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '192.168.12.12' (ED25519) to the list of known hosts.
-remote: Enumerating objects: 10, done.
-remote: Counting objects: 100% (10/10), done.
-remote: Compressing objects: 100% (7/7), done.
-remote: Total 10 (delta 3), reused 0 (delta 0), pack-reused 0
-Получение объектов: 100% (10/10), готово.
-Определение изменений: 100% (3/3), готово.
-
-❯ cd wordpress
+❯ git clone git@192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
+Клонирование в «ntlgy-wordpress»…
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Получение объектов: 100% (3/3), готово.
+❯ cd ntlgy-wordpress
 ❯ git status
 На ветке main
 Ваша ветка обновлена в соответствии с «origin/main».
 
 нечего коммитить, нет изменений в рабочем каталоге
-❯ ls -lah
-итого 16K
-drwxrwxr-x 3 znail znail 4,0K окт 12 20:27 .
-drwxrwxr-x 3 znail znail 4,0K окт 12 20:26 ..
-drwxrwxr-x 8 znail znail 4,0K окт 12 20:27 .git
--rw-rw-r-- 1 znail znail  779 окт 12 20:27 .gitlab-ci.yml
-
+❯ git tag -a v1.0 -m "my version 1.0"
+❯ git tag
+v1.0
 ❯ lvim info.php
+
 ❯ git status
 На ветке main
 Ваша ветка обновлена в соответствии с «origin/main».
@@ -514,23 +505,21 @@ drwxrwxr-x 8 znail znail 4,0K окт 12 20:27 .git
 	info.php
 
 ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
-❯ git tag
-❯ git tag -a v1.0 -m "my version 1.0"
-❯ git tag
-v1.0
+
 ❯ git add info.php
-❯ git status
-На ветке main
-Ваша ветка обновлена в соответствии с «origin/main».
 
-Изменения, которые будут включены в коммит:
-  (используйте «git restore --staged <файл>…», чтобы убрать из индекса)
-	новый файл:    info.php
-
-❯ git commit -m "Add info.php"
-[main 85b0503] Add info.php
+❯ git commit -m "Add info.php v1.0"
+[main b417881] Add info.php v1.0
  1 file changed, 1 insertion(+)
  create mode 100644 info.php
+
+❯ git push origin v1.0
+Перечисление объектов: 1, готово.
+Подсчет объектов: 100% (1/1), готово.
+Запись объектов: 100% (1/1), 165 байтов | 165.00 КиБ/с, готово.
+Всего 1 (изменений 0), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+To 192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
+ * [new tag]         v1.0 -> v1.0
 
  ```
 
