@@ -530,4 +530,9 @@ To 192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
 ![cicd3](./assets/diplom-yandexcloud_pic-017.png)
 
 ![cicd2](./assets/diplom-yandexcloud_pic-018.png)
+
+
 ### Установка Prometheus, Alert Manager, Node Exporter и Grafana
+
+При помощи ролей [prometheus](./src/ansible/roles/prometheus/), [grafana](./src/ansible/roles/grafana/) (*admin/admin*), [alertmanager](./src/ansible/roles/alertmanager/) и [node_exporter](./src/ansible/roles/node_exporter/) развертываем стек мониторинга.
+Переменные и конфигурации  задаются в файлах [./roles/prometheus/templates/prometheus.yml](./src/ansible/prometheus/templates/prometheus.yml), [./roles/alertmanager/templates/alerts.rules.yml]
