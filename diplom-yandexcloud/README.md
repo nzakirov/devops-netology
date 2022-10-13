@@ -546,3 +546,6 @@ To 192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
 Остановим некоторые из ВМ. Получаем критические уведомления о недоступности:
 
 ![prometheus2](./assets/diplom-yandexcloud_pic-022.png)
+
+
+---
