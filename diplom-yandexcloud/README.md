@@ -547,5 +547,12 @@ To 192.168.12.12:gitlab-instance-6a41b4b2/ntlgy-wordpress.git
 
 ![prometheus2](./assets/diplom-yandexcloud_pic-022.png)
 
+Весь процесс развертывания представлен в виде записи экрана терминала
 
+<details><summary></summary>
+
+следующие фрагменты по порядку:
+
+
+</details>
 ---
